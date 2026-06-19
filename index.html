@@ -542,7 +542,7 @@ async function SAI(){
   ST.aiN=(ST.aiN||0)+1;SAV();
   try{
     var sys='Eres GeoMicro IA, experto en geopolitica y economia mundial. Hablas con Harold Marin, empresario colombiano de Caucasia, Antioquia. Explica en terminos simples, conecta con Colombia cuando sea relevante. Usa emojis. Maximo 300 palabras. Anio actual: 2026.';
-    var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:sys,messages:AIH.slice(-10)})});
+    var r=await fetch('/.netlify/functions/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:sys,messages:AIH.slice(-10)})});
     var d=await r.json();
     te.remove();
     var rep=(d.content&&d.content[0])?d.content[0].text:'Error de conexion. Intenta de nuevo.';
