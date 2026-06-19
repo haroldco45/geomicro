@@ -1,0 +1,8 @@
+{
+  "name": "geomicro",
+  "version": "1.0.0",
+  "description": "GeoMicro - Geopolitica con IA",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
