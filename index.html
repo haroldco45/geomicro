@@ -2,735 +2,601 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#0F6E56">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="GeoMicro">
-<title>GeoMicro — Geopolítica con IA</title>
-<link rel="manifest" id="mplink">
+<meta property="og:title" content="GeoMicro - Geopolitica con IA">
+<meta property="og:description" content="Microaprendizaje geopolitico y economico con IA.">
+<title>GeoMicro</title>
+<link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-:root{
-  --g:#1D9E75;--gd:#0F6E56;--gl:#E1F5EE;--gt:#085041;
-  --al:#FAEEDA;--at:#854F0B;--rl:#FCEBEB;--rt:#A32D2D;
-  --pl:#EEEDFE;--pt:#534AB7;--pkl:#FBEAF0;
-  --bg:#f7f8fa;--sf:#ffffff;--s2:#f1f3f6;
-  --bd:rgba(0,0,0,0.09);--bd2:rgba(0,0,0,0.15);
-  --tx:#1a1a1a;--t2:#555;--t3:#888;
-  --r:14px;--rs:8px;
-}
-@media(prefers-color-scheme:dark){
-  :root{--bg:#0d0f12;--sf:#181c22;--s2:#22272f;--bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.14);--tx:#f0f0f0;--t2:#aaa;--t3:#666;--gl:#0a2e22;--al:#2a1e07;--rl:#2a0f0f;--pl:#14123a;--pkl:#2a0f1c;}
-}
+:root{--g:#1D9E75;--gd:#0F6E56;--gl:#E1F5EE;--gt:#085041;--al:#FAEEDA;--at:#854F0B;--rl:#FCEBEB;--rt:#A32D2D;--pl:#EEEDFE;--pt:#534AB7;--bg:#f7f8fa;--sf:#fff;--s2:#f1f3f6;--bd:rgba(0,0,0,.09);--bd2:rgba(0,0,0,.15);--tx:#1a1a1a;--t2:#555;--t3:#888;--r:14px;--rs:8px}
+@media(prefers-color-scheme:dark){:root{--bg:#0d0f12;--sf:#181c22;--s2:#22272f;--bd:rgba(255,255,255,.08);--bd2:rgba(255,255,255,.14);--tx:#f0f0f0;--t2:#aaa;--t3:#666;--gl:#0a2e22;--al:#2a1e07;--rl:#2a0f0f;--pl:#14123a}}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--tx);font-size:15px;line-height:1.6}
-#app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--sf);position:relative;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,0.1)}
+#app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--sf);overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.1)}
 .screen{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .screen.active{display:block}
-.app-header{padding:14px 20px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--bd);background:var(--sf);position:sticky;top:0;z-index:10}
+.hdr{padding:14px 20px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid var(--bd);background:var(--sf);position:sticky;top:0;z-index:10}
 .logo{display:flex;align-items:center;gap:9px}
-.logo-icon{width:32px;height:32px;background:var(--g);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;flex-shrink:0}
-.logo-name{font-size:17px;font-weight:700;letter-spacing:-0.3px}
-.hright{display:flex;align-items:center;gap:10px}
+.logi{width:32px;height:32px;background:var(--g);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;flex-shrink:0}
+.logn{font-size:17px;font-weight:700}
+.hr{display:flex;align-items:center;gap:10px}
 .sp{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--at);background:var(--al);padding:5px 11px;border-radius:20px}
-.xp{font-size:12px;font-weight:600;color:var(--gt);background:var(--gl);padding:5px 10px;border-radius:20px}
-.bnav{border-top:0.5px solid var(--bd);display:flex;background:var(--sf);padding:6px 0 calc(6px + env(safe-area-inset-bottom));flex-shrink:0}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:6px 4px;font-size:10px;color:var(--t3);background:none;border:none;font-family:inherit;transition:color 0.15s}
-.nb.active{color:var(--g)}
+.xpp{font-size:12px;font-weight:600;color:var(--gt);background:var(--gl);padding:5px 10px;border-radius:20px}
+.bnv{border-top:.5px solid var(--bd);display:flex;background:var(--sf);padding:6px 0 calc(6px + env(safe-area-inset-bottom));flex-shrink:0}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:6px 4px;font-size:10px;color:var(--t3);background:none;border:none;font-family:inherit}
+.nb.on{color:var(--g)}
 .nb i{font-size:22px}
-.banner{background:linear-gradient(145deg,var(--gd) 0%,var(--g) 100%);padding:22px 20px 20px;color:#fff}
-.bg{font-size:13px;opacity:0.8;margin-bottom:3px}
-.bt{font-size:21px;font-weight:700;margin-bottom:14px;line-height:1.2}
-.bstats{display:flex;gap:20px}
+.ban{background:linear-gradient(145deg,var(--gd),var(--g));padding:22px 20px 20px;color:#fff}
+.bg2{font-size:13px;opacity:.8;margin-bottom:3px}
+.btt{font-size:21px;font-weight:700;margin-bottom:14px;line-height:1.2}
+.bst{display:flex;gap:20px}
 .bsn{font-size:24px;font-weight:800}
-.bsl{font-size:11px;opacity:0.75;margin-top:-2px}
-.slbl{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;padding:18px 20px 8px}
-.dc{margin:0 16px 6px;border:0.5px solid var(--bd);border-radius:var(--r);padding:16px;cursor:pointer;background:var(--sf)}
+.bsl{font-size:11px;opacity:.75}
+.slb{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;padding:18px 20px 8px}
+.dc{margin:0 16px 6px;border:.5px solid var(--bd);border-radius:var(--r);padding:16px;cursor:pointer;background:var(--sf)}
 .dc:active{background:var(--s2)}
 .dbg{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--gt);background:var(--gl);padding:3px 9px;border-radius:20px;margin-bottom:8px}
-.dt{font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.3}
-.dd{font-size:13px;color:var(--t2);margin-bottom:10px}
-.dm{display:flex;gap:14px;font-size:12px;color:var(--t3)}
-.dm span{display:flex;align-items:center;gap:3px}
-.pbar{height:4px;background:var(--s2);border-radius:4px;margin-top:12px;overflow:hidden}
-.pfill{height:100%;background:var(--g);border-radius:4px}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 16px 16px}
-.mc{border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;cursor:pointer;background:var(--sf)}
+.dtt{font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.3}
+.ddd{font-size:13px;color:var(--t2);margin-bottom:10px}
+.dmt{display:flex;gap:14px;font-size:12px;color:var(--t3)}
+.pb{height:4px;background:var(--s2);border-radius:4px;margin-top:12px;overflow:hidden}
+.pf{height:100%;background:var(--g);border-radius:4px}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 16px 16px}
+.mc{border:.5px solid var(--bd);border-radius:var(--r);padding:14px;cursor:pointer;background:var(--sf)}
 .mc:active{background:var(--s2)}
 .mi{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:9px;font-size:19px}
 .mn{font-size:13px;font-weight:700;margin-bottom:2px;line-height:1.3}
 .mct{font-size:11px;color:var(--t3);margin-bottom:8px}
-.mbar{height:3px;background:var(--s2);border-radius:3px;overflow:hidden}
-.mfill{height:100%;border-radius:3px}
-.ltbar{padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:0.5px solid var(--bd);background:var(--sf);position:sticky;top:0;z-index:5}
-.bbtn{background:none;border:none;cursor:pointer;color:var(--t2);font-size:22px;display:flex;align-items:center;padding:2px}
-.lbar{flex:1;height:7px;background:var(--s2);border-radius:7px;overflow:hidden}
-.lbf{height:100%;background:var(--g);border-radius:7px;transition:width 0.4s}
-.lstp{font-size:12px;color:var(--t3);white-space:nowrap;font-weight:500}
-.lbody{padding:22px 20px 100px}
-.tbdg{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;margin-bottom:13px}
-.lh{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:14px;letter-spacing:-0.3px}
-.lvis{border-radius:var(--r);padding:22px 16px;margin-bottom:16px;text-align:center;background:var(--s2)}
+.mb2{height:3px;background:var(--s2);border-radius:3px;overflow:hidden}
+.mf{height:100%;border-radius:3px}
+.ltb{padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:.5px solid var(--bd);background:var(--sf);position:sticky;top:0;z-index:5}
+.bk{background:none;border:none;cursor:pointer;color:var(--t2);font-size:22px;display:flex;padding:2px}
+.lb{flex:1;height:7px;background:var(--s2);border-radius:7px;overflow:hidden}
+.lbf{height:100%;background:var(--g);border-radius:7px;transition:width .4s}
+.ls{font-size:12px;color:var(--t3);white-space:nowrap;font-weight:500}
+.lbd{padding:22px 20px 100px}
+.tbg{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;margin-bottom:13px}
+.lh{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:14px;letter-spacing:-.3px}
+.lv{border-radius:var(--r);padding:22px 16px;margin-bottom:16px;text-align:center;background:var(--s2)}
 .lvi{font-size:52px;margin-bottom:8px}
 .lvc{font-size:12px;color:var(--t2);line-height:1.4}
-.ltxt{font-size:15px;line-height:1.75;color:var(--tx);margin-bottom:16px}
-.hlbox{border-left:3px solid var(--g);background:var(--gl);padding:13px 15px;border-radius:0 var(--rs) var(--rs) 0;font-size:14px;color:var(--gt);margin-bottom:18px;line-height:1.5;font-weight:500}
-.cpts{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
-.cpt{display:flex;align-items:flex-start;gap:11px;background:var(--s2);border-radius:var(--rs);padding:12px 13px;font-size:14px;line-height:1.5}
-.ci{font-size:19px;flex-shrink:0}
-.infog{background:var(--s2);border-radius:var(--r);padding:16px;margin-bottom:18px}
-.infot{font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px}
-.infor{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding-bottom:8px;border-bottom:0.5px solid var(--bd)}
-.infor:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-.infl{font-size:22px;flex-shrink:0}
-.infl2{font-size:13px;font-weight:600;flex:1}
-.infv{font-size:12px;color:var(--t2);text-align:right;max-width:140px;line-height:1.3}
-.qbody{padding:22px 20px 100px}
-.qn{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px}
+.ltx{font-size:15px;line-height:1.75;margin-bottom:16px}
+.hl{border-left:3px solid var(--g);background:var(--gl);padding:13px 15px;border-radius:0 var(--rs) var(--rs) 0;font-size:14px;color:var(--gt);margin-bottom:18px;line-height:1.5;font-weight:500}
+.cs{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.ci{display:flex;align-items:flex-start;gap:11px;background:var(--s2);border-radius:var(--rs);padding:12px 13px;font-size:14px;line-height:1.5}
+.cii{font-size:19px;flex-shrink:0}
+.ig{background:var(--s2);border-radius:var(--r);padding:16px;margin-bottom:18px}
+.igt{font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.ir{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding-bottom:8px;border-bottom:.5px solid var(--bd)}
+.ir:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.if{font-size:22px;flex-shrink:0}
+.il{font-size:13px;font-weight:600;flex:1}
+.iv{font-size:12px;color:var(--t2);text-align:right;max-width:140px;line-height:1.3}
+.qbd{padding:22px 20px 100px}
+.qn{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px}
 .qt{font-size:19px;font-weight:700;line-height:1.35;margin-bottom:22px}
-.opts{display:flex;flex-direction:column;gap:10px}
-.opt{border:1.5px solid var(--bd2);border-radius:var(--r);padding:14px 16px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:11px;background:var(--sf);color:var(--tx);text-align:left;font-family:inherit;line-height:1.4;transition:all 0.15s;width:100%}
-.opt:hover:not(.dis){border-color:var(--g);background:var(--gl)}
-.opt.ok{border-color:var(--g);background:var(--gl);color:var(--gt)}
-.opt.no{border-color:#E24B4A;background:var(--rl);color:var(--rt)}
-.opt.dis{cursor:default}
+.ops{display:flex;flex-direction:column;gap:10px}
+.op{border:1.5px solid var(--bd2);border-radius:var(--r);padding:14px 16px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:11px;background:var(--sf);color:var(--tx);text-align:left;font-family:inherit;line-height:1.4;width:100%}
+.op:hover:not(.dis){border-color:var(--g);background:var(--gl)}
+.op.ok{border-color:var(--g);background:var(--gl);color:var(--gt)}
+.op.no{border-color:#E24B4A;background:var(--rl);color:var(--rt)}
+.op.dis{cursor:default}
 .ol{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--bd2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-.opt.ok .ol{background:var(--g);border-color:var(--g);color:#fff}
-.opt.no .ol{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.op.ok .ol{background:var(--g);border-color:var(--g);color:#fff}
+.op.no .ol{background:#E24B4A;border-color:#E24B4A;color:#fff}
 .fb{margin-top:14px;padding:13px 15px;border-radius:var(--r);font-size:13px;line-height:1.55;display:none}
-.fb.show{display:block}
+.fb.on{display:block}
 .fbok{background:var(--gl);color:var(--gt)}
 .fbno{background:var(--rl);color:var(--rt)}
-.comp{padding:40px 24px;text-align:center}
-.compico{width:88px;height:88px;border-radius:50%;background:var(--al);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:40px}
-.compt{font-size:24px;font-weight:800;margin-bottom:7px}
-.comps{font-size:14px;color:var(--t2);margin-bottom:22px;line-height:1.6}
+.cmp{padding:40px 24px;text-align:center}
+.cmpi{width:88px;height:88px;border-radius:50%;background:var(--al);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:40px}
+.cmpt{font-size:24px;font-weight:800;margin-bottom:7px}
+.cmps{font-size:14px;color:var(--t2);margin-bottom:22px;line-height:1.6}
 .xpb{display:inline-flex;align-items:center;gap:7px;background:var(--al);color:var(--at);padding:9px 18px;border-radius:24px;font-size:15px;font-weight:700;margin-bottom:22px}
 .cst{display:flex;justify-content:center;gap:28px;margin-bottom:28px}
 .csn{font-size:26px;font-weight:800;color:var(--g)}
 .csl{font-size:12px;color:var(--t3)}
-.btn1{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:10px}
-.btn1:active{background:var(--gd)}
-.btn2{width:100%;padding:14px;background:var(--sf);color:var(--tx);border:0.5px solid var(--bd2);border-radius:var(--r);font-size:15px;cursor:pointer;font-family:inherit;margin-bottom:10px}
-.btnf{position:fixed;bottom:calc(70px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:448px}
-.etop{padding:20px 20px 0}
-.etit{font-size:22px;font-weight:800;margin-bottom:14px}
-.sw{display:flex;align-items:center;gap:9px;background:var(--s2);border:0.5px solid var(--bd);border-radius:var(--r);padding:11px 14px;margin-bottom:14px}
+.b1{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:10px}
+.b1:active{background:var(--gd)}
+.b2{width:100%;padding:14px;background:var(--sf);color:var(--tx);border:.5px solid var(--bd2);border-radius:var(--r);font-size:15px;cursor:pointer;font-family:inherit;margin-bottom:10px}
+.bf{position:fixed;bottom:calc(70px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:448px}
+.etp{padding:20px 20px 0}
+.ett{font-size:22px;font-weight:800;margin-bottom:14px}
+.sw{display:flex;align-items:center;gap:9px;background:var(--s2);border:.5px solid var(--bd);border-radius:var(--r);padding:11px 14px;margin-bottom:14px}
 .sw input{border:none;background:none;font-size:14px;color:var(--tx);font-family:inherit;flex:1;outline:none}
 .sw input::placeholder{color:var(--t3)}
 .sw i{font-size:18px;color:var(--t3)}
-.chips{display:flex;gap:7px;padding:0 20px 14px;overflow-x:auto;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:0.5px solid var(--bd2);cursor:pointer;background:var(--sf);color:var(--t2)}
-.chip.active{background:var(--g);color:#fff;border-color:var(--g)}
-.llist{display:flex;flex-direction:column}
-.lli{display:flex;align-items:center;gap:13px;padding:14px 20px;border-bottom:0.5px solid var(--bd);cursor:pointer}
-.lli:active{background:var(--s2)}
-.llico{width:46px;height:46px;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
-.llinf{flex:1;min-width:0}
-.lltt{font-size:14px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.llm{font-size:12px;color:var(--t3)}
-.llr{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.cps{display:flex;gap:7px;padding:0 20px 14px;overflow-x:auto;scrollbar-width:none}
+.cps::-webkit-scrollbar{display:none}
+.cp{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:.5px solid var(--bd2);cursor:pointer;background:var(--sf);color:var(--t2)}
+.cp.on{background:var(--g);color:#fff;border-color:var(--g)}
+.ll{display:flex;flex-direction:column}
+.li{display:flex;align-items:center;gap:13px;padding:14px 20px;border-bottom:.5px solid var(--bd);cursor:pointer}
+.li:active{background:var(--s2)}
+.lic{width:46px;height:46px;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.lif{flex:1;min-width:0}
+.lit{font-size:14px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lim{font-size:12px;color:var(--t3)}
+.lir{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
 .df{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
 .de{background:var(--gl);color:var(--gt)}
-.dm2{background:var(--al);color:var(--at)}
+.dm{background:var(--al);color:var(--at)}
 .dh{background:var(--rl);color:var(--rt)}
 .dk{width:18px;height:18px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center}
 .dk i{font-size:11px;color:#fff}
 .ais{display:flex;flex-direction:column;height:100%}
-.aitop{padding:16px 20px 12px;border-bottom:0.5px solid var(--bd)}
-.ait{font-size:18px;font-weight:800}
-.ais2{font-size:12px;color:var(--t3);margin-top:1px}
-.aims{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;padding-bottom:120px}
+.ait{padding:16px 20px 12px;border-bottom:.5px solid var(--bd)}
+.aitt{font-size:18px;font-weight:800}
+.aits{font-size:12px;color:var(--t3);margin-top:1px}
+.aim{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;padding-bottom:120px}
 .msg{max-width:85%}
 .mu{align-self:flex-end}
 .ma{align-self:flex-start}
-.mb{padding:11px 14px;border-radius:16px;font-size:14px;line-height:1.55}
-.mu .mb{background:var(--g);color:#fff;border-radius:16px 16px 4px 16px}
-.ma .mb{background:var(--s2);color:var(--tx);border-radius:16px 16px 16px 4px}
+.mb3{padding:11px 14px;border-radius:16px;font-size:14px;line-height:1.55}
+.mu .mb3{background:var(--g);color:#fff;border-radius:16px 16px 4px 16px}
+.ma .mb3{background:var(--s2);color:var(--tx);border-radius:16px 16px 16px 4px}
 .mt{font-size:10px;color:var(--t3);margin-top:3px;padding:0 4px}
 .mu .mt{text-align:right}
-.aiiw{position:fixed;bottom:calc(60px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:100%;max-width:480px;padding:10px 14px;background:var(--sf);border-top:0.5px solid var(--bd);display:flex;gap:9px;align-items:flex-end}
-.aii{flex:1;background:var(--s2);border:0.5px solid var(--bd);border-radius:20px;padding:10px 14px;font-size:14px;color:var(--tx);font-family:inherit;resize:none;outline:none;max-height:100px;line-height:1.4}
+.aiw{position:fixed;bottom:calc(60px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:100%;max-width:480px;padding:10px 14px;background:var(--sf);border-top:.5px solid var(--bd);display:flex;gap:9px;align-items:flex-end}
+.aii{flex:1;background:var(--s2);border:.5px solid var(--bd);border-radius:20px;padding:10px 14px;font-size:14px;color:var(--tx);font-family:inherit;resize:none;outline:none;max-height:100px;line-height:1.4}
 .aisb{width:40px;height:40px;border-radius:50%;background:var(--g);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .aisb:disabled{background:var(--s2);color:var(--t3);cursor:not-allowed}
 .typ{display:flex;gap:4px;align-items:center;padding:12px 14px;background:var(--s2);border-radius:16px 16px 16px 4px;width:fit-content}
-.td{width:7px;height:7px;border-radius:50%;background:var(--t3);animation:bou 1.2s infinite}
-.td:nth-child(2){animation-delay:0.2s}
-.td:nth-child(3){animation-delay:0.4s}
-@keyframes bou{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.td{width:7px;height:7px;border-radius:50%;background:var(--t3);animation:bo 1.2s infinite}
+.td:nth-child(2){animation-delay:.2s}
+.td:nth-child(3){animation-delay:.4s}
+@keyframes bo{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 .qps{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 14px}
-.qp{font-size:12px;padding:7px 13px;border:0.5px solid var(--bd2);border-radius:20px;cursor:pointer;background:var(--sf);color:var(--t2);font-family:inherit}
+.qp{font-size:12px;padding:7px 13px;border:.5px solid var(--bd2);border-radius:20px;cursor:pointer;background:var(--sf);color:var(--t2);font-family:inherit}
 .qp:hover{border-color:var(--g);color:var(--gt);background:var(--gl)}
 .pw{padding:24px 20px 100px}
 .pav{width:76px;height:76px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:800;margin:0 auto 12px}
 .pn{text-align:center;font-size:20px;font-weight:800;margin-bottom:3px}
 .ps{text-align:center;font-size:13px;color:var(--t3);margin-bottom:20px}
-.pgr{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
 .pst{background:var(--s2);border-radius:var(--r);padding:14px 10px;text-align:center}
 .psn{font-size:22px;font-weight:800;color:var(--g)}
 .psl{font-size:11px;color:var(--t3);margin-top:2px}
 .bw{margin-bottom:20px}
-.bt2{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px}
-.brow{display:flex;gap:10px;flex-wrap:wrap}
-.bdg{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;border:0.5px solid var(--bd)}
-.bdg.lk{opacity:0.3;filter:grayscale(1)}
-.prgs{background:var(--s2);border-radius:var(--r);padding:16px}
-.prgt{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px}
+.bt2{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.bro{display:flex;gap:10px;flex-wrap:wrap}
+.bdg{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;border:.5px solid var(--bd)}
+.bdg.lk{opacity:.3;filter:grayscale(1)}
+.prs{background:var(--s2);border-radius:var(--r);padding:16px}
+.prt{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
 .prr{margin-bottom:12px}
 .prr:last-child{margin-bottom:0}
 .prrt{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
 .prrp{font-weight:700;color:var(--g)}
-.prm{height:5px;background:var(--bd);border-radius:5px;overflow:hidden}
-.prmf{height:100%;border-radius:5px}
-.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:500;opacity:0;transition:all 0.3s;z-index:100;white-space:nowrap;pointer-events:none}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.prb{height:5px;background:var(--bd);border-radius:5px;overflow:hidden}
+.prbf{height:100%;border-radius:5px}
+.tst{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;opacity:0;transition:all .3s;z-index:100;pointer-events:none}
+.tst.on{opacity:1;transform:translateX(-50%) translateY(0)}
 .screen::-webkit-scrollbar{width:3px}
 .screen::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
 </style>
 </head>
 <body>
 <div id="app">
-  <header class="app-header">
-    <div class="logo">
-      <div class="logo-icon">G</div>
-      <span class="logo-name">GeoMicro <span style="font-size:10px;color:var(--t3);font-weight:400">IA</span></span>
-    </div>
-    <div class="hright">
-      <div class="sp">&#128293; <span id="stk">7</span></div>
-      <div class="xp">&#9889; <span id="xpc">340</span> XP</div>
-    </div>
-  </header>
-
-  <div class="screen active" id="sc-home">
-    <div class="banner">
-      <div class="bg">Hola Harold &#128075; &middot; <span id="fecha"></span></div>
-      <div class="bt">Entiende el mundo<br>en 10 minutos</div>
-      <div class="bstats">
-        <div><div class="bsn" id="sl">0</div><div class="bsl">lecciones</div></div>
-        <div><div class="bsn" id="sx">340</div><div class="bsl">XP total</div></div>
-        <div><div class="bsn">&#128293;7</div><div class="bsl">racha</div></div>
-      </div>
-    </div>
-    <div class="slbl">Lecci&#243;n del d&#237;a</div>
-    <div class="dc" onclick="startLesson(0)">
-      <div class="dbg">&#9889; Hoy &middot; 8 min</div>
-      <div class="dt">&#191;Qu&#233; es el BRICS y por qu&#233; importa?</div>
-      <div class="dd">El bloque emergente que desaf&#237;a el orden econ&#243;mico occidental</div>
-      <div class="dm">
-        <span>&#127757; Geopolit.</span>
-        <span>&#128196; 5 tarjetas</span>
-        <span>&#10067; 3 preguntas</span>
-      </div>
-      <div class="pbar"><div class="pfill" style="width:0%"></div></div>
-    </div>
-    <div class="slbl">M&#243;dulos</div>
-    <div class="mgrid" id="mgrid"></div>
+<header class="hdr">
+  <div class="logo"><div class="logi">G</div><span class="logn">GeoMicro <span style="font-size:10px;color:var(--t3);font-weight:400">IA</span></span></div>
+  <div class="hr">
+    <div class="sp">&#128293; <span id="stk">7</span></div>
+    <div class="xpp">&#9889; <span id="xpc">340</span> XP</div>
   </div>
+</header>
 
-  <div class="screen" id="sc-lesson">
-    <div class="ltbar">
-      <button class="bbtn" onclick="goHome()"><i class="ti ti-x"></i></button>
-      <div class="lbar"><div class="lbf" id="lbf" style="width:0%"></div></div>
-      <div class="lstp" id="lstp">1/5</div>
-    </div>
-    <div class="lbody" id="lbody"></div>
-    <div class="btnf">
-      <button class="btn1" id="lnxt" onclick="nextStep()">Siguiente <i class="ti ti-arrow-right"></i></button>
+<div class="screen active" id="s-home">
+  <div class="ban">
+    <div class="bg2">Hola Harold &#128075; &bull; <span id="fch"></span></div>
+    <div class="btt">Entiende el mundo<br>en 10 minutos</div>
+    <div class="bst">
+      <div><div class="bsn" id="s-ln">0</div><div class="bsl">lecciones</div></div>
+      <div><div class="bsn" id="s-xp">340</div><div class="bsl">XP total</div></div>
+      <div><div class="bsn">&#128293;7</div><div class="bsl">racha</div></div>
     </div>
   </div>
-
-  <div class="screen" id="sc-quiz">
-    <div class="ltbar">
-      <button class="bbtn" onclick="goHome()"><i class="ti ti-x"></i></button>
-      <div class="lbar"><div class="lbf" id="qbf" style="width:85%"></div></div>
-      <div class="lstp" id="qstp">Quiz 1/3</div>
+  <div class="slb">Leccion del dia</div>
+  <div class="dc" onclick="GO(0)">
+    <div class="dbg">&#9889; Hoy &bull; 8 min</div>
+    <div class="dtt">El BRICS y el nuevo orden mundial</div>
+    <div class="ddd">El bloque emergente que desafia el orden economico occidental</div>
+    <div class="dmt">
+      <span>&#127757; Geopolitica</span>
+      <span>&#128196; 5 tarjetas</span>
+      <span>&#10067; 3 preguntas</span>
     </div>
-    <div class="qbody" id="qbody"></div>
-    <div class="btnf" id="qnxt" style="display:none">
-      <button class="btn1" onclick="nextQ()">Siguiente <i class="ti ti-arrow-right"></i></button>
-    </div>
+    <div class="pb"><div class="pf" style="width:0%"></div></div>
   </div>
-
-  <div class="screen" id="sc-done">
-    <div class="comp">
-      <div class="compico">&#127942;</div>
-      <div class="compt">&#161;Lecci&#243;n completada!</div>
-      <div class="comps" id="cdesc"></div>
-      <div class="xpb"><i class="ti ti-bolt"></i> <span id="cxp">+50 XP</span> ganados</div>
-      <div class="cst">
-        <div><div class="csn" id="ccor">?/3</div><div class="csl">respuestas</div></div>
-        <div><div class="csn" id="ctim">?m</div><div class="csl">tiempo</div></div>
-        <div><div class="csn">&#128293;8</div><div class="csl">racha</div></div>
-      </div>
-      <button class="btn1" onclick="showSc('explore')"><i class="ti ti-compass"></i> Explorar m&#225;s</button>
-      <button class="btn2" onclick="goHome()">Volver al inicio</button>
-    </div>
-  </div>
-
-  <div class="screen" id="sc-explore">
-    <div class="etop">
-      <div class="etit">Explorar</div>
-      <div class="sw"><i class="ti ti-search"></i><input type="text" id="srch" placeholder="Buscar lecciones..." oninput="filterL()" autocomplete="off"></div>
-    </div>
-    <div class="chips" id="chips"></div>
-    <div class="llist" id="llist"></div>
-  </div>
-
-  <div class="screen" id="sc-ai">
-    <div class="ais">
-      <div class="aitop">
-        <div class="ait">&#129302; Consulta con IA</div>
-        <div class="ais2">Pregunta a Claude sobre geopolit. y econom&#237;a mundial</div>
-      </div>
-      <div class="qps">
-        <button class="qp" onclick="sq('&#191;Qu&#233; pasa hoy en Ucrania?')">&#127482;&#127462; Ucrania</button>
-        <button class="qp" onclick="sq('Expl&#237;came el petrod&#243;lar en t&#233;rminos simples')">&#128181; Petrod&#243;lar</button>
-        <button class="qp" onclick="sq('&#191;C&#243;mo afecta la guerra EE.UU.-China a Colombia?')">&#127464;&#127476; Colombia</button>
-        <button class="qp" onclick="sq('&#191;Qu&#233; son los BRICS en palabras simples?')">&#127757; BRICS</button>
-        <button class="qp" onclick="sq('&#191;Qu&#233; es la OTAN y qu&#233; hace hoy?')">&#128737; OTAN</button>
-        <button class="qp" onclick="sq('Expl&#237;came la guerra de los semiconductores')">&#128187; Chips</button>
-      </div>
-      <div class="aims" id="aims">
-        <div class="msg ma">
-          <div class="mb">&#161;Hola Harold! Soy tu asistente geopol&#237;tico. Puedo explicarte cualquier tema de econom&#237;a mundial, conflictos, bloques de poder o noticias globales en lenguaje simple.<br><br>&#191;Qu&#233; quieres entender hoy? &#127757;</div>
-          <div class="mt">Ahora</div>
-        </div>
-      </div>
-      <div class="aiiw">
-        <textarea class="aii" id="aii" placeholder="Pregunta sobre geopolit..." rows="1" onkeydown="aik(event)" oninput="ar(this)"></textarea>
-        <button class="aisb" id="asb" onclick="sendAI()"><i class="ti ti-send"></i></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="screen" id="sc-profile">
-    <div class="pw">
-      <div class="pav">H</div>
-      <div class="pn">Harold Mar&#237;n</div>
-      <div class="ps">Analista en formaci&#243;n &middot; Caucasia &#127464;&#127476;</div>
-      <div class="pgr">
-        <div class="pst"><div class="psn" id="pl2">0</div><div class="psl">Lecciones</div></div>
-        <div class="pst"><div class="psn" id="px2">340</div><div class="psl">XP total</div></div>
-        <div class="pst"><div class="psn">&#128293;7</div><div class="psl">Racha</div></div>
-      </div>
-      <div class="bw">
-        <div class="bt2">Logros</div>
-        <div class="brow">
-          <div class="bdg" title="Primera lecci&#243;n">&#127885;</div>
-          <div class="bdg" title="7 d&#237;as seguidos">&#128293;</div>
-          <div class="bdg lk" title="5 lecciones">&#127758;</div>
-          <div class="bdg lk" title="100% quiz">&#127919;</div>
-          <div class="bdg lk" title="30 lecciones">&#127891;</div>
-          <div class="bdg lk" title="IA 10 veces">&#129302;</div>
-        </div>
-      </div>
-      <div class="prgs">
-        <div class="prgt">Progreso por m&#243;dulo</div>
-        <div id="prows"></div>
-      </div>
-    </div>
-  </div>
-
-  <nav class="bnav">
-    <button class="nb active" id="nb-home" onclick="showSc('home');setNav('home')"><i class="ti ti-home"></i><span>Inicio</span></button>
-    <button class="nb" id="nb-explore" onclick="showSc('explore');setNav('explore')"><i class="ti ti-compass"></i><span>Explorar</span></button>
-    <button class="nb" id="nb-ai" onclick="showSc('ai');setNav('ai')"><i class="ti ti-robot"></i><span>IA</span></button>
-    <button class="nb" id="nb-profile" onclick="showSc('profile');setNav('profile');rProfile()"><i class="ti ti-user"></i><span>Perfil</span></button>
-  </nav>
+  <div class="slb">Modulos</div>
+  <div class="mg" id="mg"></div>
 </div>
-<div class="toast" id="toast"></div>
+
+<div class="screen" id="s-lesson">
+  <div class="ltb">
+    <button class="bk" onclick="HOME()"><i class="ti ti-x"></i></button>
+    <div class="lb"><div class="lbf" id="lbf" style="width:0%"></div></div>
+    <div class="ls" id="lsp">1/5</div>
+  </div>
+  <div class="lbd" id="lbd"></div>
+  <div class="bf"><button class="b1" id="lnb" onclick="NS()">Siguiente <i class="ti ti-arrow-right"></i></button></div>
+</div>
+
+<div class="screen" id="s-quiz">
+  <div class="ltb">
+    <button class="bk" onclick="HOME()"><i class="ti ti-x"></i></button>
+    <div class="lb"><div class="lbf" id="qbf" style="width:85%"></div></div>
+    <div class="ls" id="qsp">Quiz 1/3</div>
+  </div>
+  <div class="qbd" id="qbd"></div>
+  <div class="bf" id="qnb" style="display:none"><button class="b1" onclick="NQ()">Siguiente <i class="ti ti-arrow-right"></i></button></div>
+</div>
+
+<div class="screen" id="s-done">
+  <div class="cmp">
+    <div class="cmpi">&#127942;</div>
+    <div class="cmpt">&#161;Leccion completada!</div>
+    <div class="cmps" id="cd"></div>
+    <div class="xpb"><i class="ti ti-bolt"></i> <span id="cxp">+50 XP</span> ganados</div>
+    <div class="cst">
+      <div><div class="csn" id="cc">?</div><div class="csl">respuestas</div></div>
+      <div><div class="csn" id="ct">?</div><div class="csl">tiempo</div></div>
+      <div><div class="csn">&#128293;+1</div><div class="csl">racha</div></div>
+    </div>
+    <button class="b1" onclick="SC('explore')"><i class="ti ti-compass"></i> Explorar mas</button>
+    <button class="b2" onclick="HOME()">Volver al inicio</button>
+  </div>
+</div>
+
+<div class="screen" id="s-explore">
+  <div class="etp">
+    <div class="ett">Explorar</div>
+    <div class="sw"><i class="ti ti-search"></i><input type="text" id="srch" placeholder="Buscar lecciones..." oninput="FL()" autocomplete="off"></div>
+  </div>
+  <div class="cps" id="cps"></div>
+  <div class="ll" id="lll"></div>
+</div>
+
+<div class="screen" id="s-ai">
+  <div class="ais">
+    <div class="ait">
+      <div class="aitt">&#129302; Consulta con IA</div>
+      <div class="aits">Pregunta a Claude sobre geopolitica y economia mundial</div>
+    </div>
+    <div class="qps">
+      <button class="qp" onclick="SQ('Que pasa hoy con Ucrania y Rusia en 2026?')">&#127482;&#127462; Ucrania</button>
+      <button class="qp" onclick="SQ('Explicame el petrodolar de forma simple')">&#128181; Petrodolar</button>
+      <button class="qp" onclick="SQ('Como afecta la guerra EE.UU.-China a Colombia?')">&#127464;&#127476; Colombia</button>
+      <button class="qp" onclick="SQ('Que son los BRICS en palabras simples?')">&#127757; BRICS</button>
+      <button class="qp" onclick="SQ('Que es la OTAN y que hace hoy en 2026?')">&#128737; OTAN</button>
+      <button class="qp" onclick="SQ('Explicame la guerra de los semiconductores entre EE.UU. y China')">&#128187; Chips</button>
+    </div>
+    <div class="aim" id="aim">
+      <div class="msg ma">
+        <div class="mb3">Hola Harold! Soy tu asistente geopolitico. Puedo explicarte cualquier tema de economia mundial, conflictos internacionales, bloques de poder o noticias globales en lenguaje simple.<br><br>Que quieres entender hoy? &#127757;</div>
+        <div class="mt">Ahora</div>
+      </div>
+    </div>
+    <div class="aiw">
+      <textarea class="aii" id="aii" placeholder="Pregunta sobre geopolitica..." rows="1" onkeydown="AIK(event)" oninput="AR(this)"></textarea>
+      <button class="aisb" id="asb" onclick="SAI()"><i class="ti ti-send"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="s-profile">
+  <div class="pw">
+    <div class="pav">H</div>
+    <div class="pn">Harold Marin</div>
+    <div class="ps">Analista en formacion &bull; Caucasia Colombia &#127464;&#127476;</div>
+    <div class="pg">
+      <div class="pst"><div class="psn" id="p-ln">0</div><div class="psl">Lecciones</div></div>
+      <div class="pst"><div class="psn" id="p-xp">340</div><div class="psl">XP total</div></div>
+      <div class="pst"><div class="psn">&#128293;7</div><div class="psl">Racha</div></div>
+    </div>
+    <div class="bw">
+      <div class="bt2">Logros</div>
+      <div class="bro">
+        <div class="bdg">&#127885;</div><div class="bdg">&#128293;</div>
+        <div class="bdg lk">&#127758;</div><div class="bdg lk">&#127919;</div>
+        <div class="bdg lk">&#127891;</div><div class="bdg lk">&#129302;</div>
+      </div>
+    </div>
+    <div class="prs"><div class="prt">Progreso por modulo</div><div id="pr"></div></div>
+  </div>
+</div>
+
+<nav class="bnv">
+  <button class="nb on" id="n-home" onclick="SC('home');SN('home')"><i class="ti ti-home"></i><span>Inicio</span></button>
+  <button class="nb" id="n-explore" onclick="SC('explore');SN('explore')"><i class="ti ti-compass"></i><span>Explorar</span></button>
+  <button class="nb" id="n-ai" onclick="SC('ai');SN('ai')"><i class="ti ti-robot"></i><span>IA</span></button>
+  <button class="nb" id="n-profile" onclick="SC('profile');SN('profile');RP()"><i class="ti ti-user"></i><span>Perfil</span></button>
+</nav>
+</div>
+<div class="tst" id="tst"></div>
 
 <script>
-var ST = JSON.parse(localStorage.getItem('gm2') || 'null') || {xp:340,streak:7,done:[],aiN:0};
-function saveS(){localStorage.setItem('gm2',JSON.stringify(ST));}
-var CL=null,CS=0,CQ=0,QC=0,QA={},T0=null;
-var DONE=new Set(ST.done||[]);
-
-var MODS=[
-  {id:'geo',name:'Geopolítica',icon:'🌍',bg:'#E6F1FB',fg:'#185FA5',fill:'#378ADD'},
-  {id:'eco',name:'Economía mundial',icon:'📈',bg:'#E1F5EE',fg:'#0F6E56',fill:'#1D9E75'},
-  {id:'pow',name:'Poder e imperios',icon:'🏛️',bg:'#FAEEDA',fg:'#854F0B',fill:'#EF9F27'},
-  {id:'con',name:'Conflictos',icon:'⚔️',bg:'#FBEAF0',fg:'#993556',fill:'#D4537E'},
-  {id:'ene',name:'Energía',icon:'⚡',bg:'#EAF3DE',fg:'#3B6D11',fill:'#639922'},
-  {id:'lat',name:'América Latina',icon:'🌎',bg:'#EEEDFE',fg:'#534AB7',fill:'#7F77DD'}
-];
-
-var LS=[
-{id:'brics',mod:'geo',title:'¿Qué es el BRICS?',desc:'El bloque que desafía el orden económico occidental',t:'8 min',xp:50,dif:'easy',
- steps:[
-  {lb:'Contexto',lc:'#E6F1FB',lt:'#185FA5',h:'¿Qué es el BRICS?',vi:'🌍',vc:'Brasil · Rusia · India · China · Sudáfrica · +5 nuevos (2024)',tx:'El BRICS es una alianza de economías emergentes formada en 2009. Su nombre viene de las iniciales de sus miembros originales: Brasil, Rusia, India, China y Sudáfrica.',hl:'Representa el 40% de la población mundial y más del 32% del PIB global — superando al G7 en poder de compra.'},
-  {lb:'Concepto',lc:'#E1F5EE',lt:'#0F6E56',h:'¿Por qué nació?',vi:'⚖️',vc:'El Sur Global busca peso propio en el tablero internacional',tx:'Estos países sentían que el orden económico global controlado por EE.UU., Europa y el FMI no representaba su peso real.',cs:[{i:'🏦',t:'Crear el Nuevo Banco de Desarrollo (NDB) como alternativa al FMI'},{i:'💱',t:'Reducir la dependencia del dólar en el comercio internacional'},{i:'🗣️',t:'Coordinar posiciones en la ONU, el G20 y otros foros'}]},
-  {lb:'Datos',lc:'#FAEEDA',lt:'#854F0B',h:'Los miembros en números',ig:[{f:'🇨🇳',l:'China',v:'PIB #2 del mundo. Motor industrial global.'},{f:'🇮🇳',l:'India',v:'Economía de mayor crecimiento. 1.400M de personas.'},{f:'🇧🇷',l:'Brasil',v:'Mayor economía de América Latina. Potencia agrícola.'},{f:'🇷🇺',l:'Rusia',v:'Mayor reservas de gas. Potencia nuclear.'},{f:'🇸🇦',l:'Arabia Saudita',v:'Nuevo 2024. Controla el 17% del petróleo OPEP.'}]},
-  {lb:'Impacto',lc:'#FCEBEB',lt:'#A32D2D',h:'La expansión de 2024',vi:'🗺️',vc:'Irán, Etiopía, Egipto, Arabia Saudita y Emiratos se unieron',tx:'En 2024 el BRICS se expandió con 5 nuevos miembros, controlando una parte enorme del petróleo mundial.',hl:'⚡ Si el BRICS logra vender petróleo en monedas propias, el "petrodólar" estaría en jaque y el sistema financiero global cambiaría.'},
-  {lb:'Perspectivas',lc:'#EEEDFE',lt:'#534AB7',h:'¿Amenaza real al orden occidental?',tx:'El BRICS genera debates intensos en foros diplomáticos y económicos.',cs:[{i:'✅',t:'A favor: da voz a países históricamente marginados de las decisiones globales'},{i:'⚠️',t:'Crítica: incluye regímenes autoritarios (Rusia, Irán) con agendas propias'},{i:'🤔',t:'Realidad: sus miembros compiten entre sí — China e India tienen tensiones'},{i:'🇨🇴',t:'Colombia: si el dólar pierde peso, las exportaciones colombianas en USD se afectarían'}]}
- ],
- quiz:[
-  {q:'¿Cuánto del PIB mundial representa el BRICS?',o:['15%','25%','más del 32%','50%'],c:2,e:'El BRICS supera el 32% del PIB global, más que el G7 combinado.'},
-  {q:'¿Cuál es el principal objetivo económico del BRICS?',o:['Adoptar el euro','Reducir dependencia del dólar','Crear ejército conjunto','Eliminar comercio con EE.UU.'],c:1,e:'El BRICS busca reducir la hegemonía del dólar promoviendo comercio en monedas locales.'},
-  {q:'¿Cuál de estos países se unió al BRICS en 2024?',o:['México','Arabia Saudita','Turquía','Nigeria'],c:1,e:'Arabia Saudita, Irán, Etiopía, Egipto y UAE ingresaron en 2024.'}
- ]
-},
-{id:'dolar',mod:'eco',title:'El dólar como arma geopolítica',desc:'Cómo EE.UU. usa su moneda para controlar el mundo',t:'10 min',xp:60,dif:'medium',
- steps:[
-  {lb:'Contexto',lc:'#E6F1FB',lt:'#185FA5',h:'El dólar no es solo dinero',vi:'💵',vc:'La moneda más usada: ~90% del comercio global',tx:'Desde los Acuerdos de Bretton Woods (1944), el dólar es la moneda de reserva mundial. Países, bancos y empresas de todo el mundo guardan dólares como respaldo.',hl:'EE.UU. tiene un "privilegio exorbitante": puede imprimir dinero y exportar su inflación al mundo entero.'},
-  {lb:'Historia',lc:'#E1F5EE',lt:'#0F6E56',h:'El sistema del petrodólar',vi:'🛢️',vc:'Desde 1974: todo el petróleo del mundo se vende en dólares',tx:'En 1974, EE.UU. acordó con Arabia Saudita: el petróleo mundial se vendería SOLO en dólares, y Arabia invertiría sus ganancias en bonos del tesoro americano.',cs:[{i:'1️⃣',t:'Para comprar petróleo, primero hay que comprar dólares'},{i:'2️⃣',t:'Esto genera demanda artificial y permanente de dólares en el mundo'},{i:'3️⃣',t:'EE.UU. puede financiar su deuda porque todos necesitan sus dólares'}]},
-  {lb:'Arma',lc:'#FBEAF0',lt:'#993556',h:'Las sanciones: bloquear el dólar',vi:'🚫',vc:'Irán, Rusia, Venezuela, Cuba — desconectados del sistema dólar',tx:'EE.UU. puede excluir países del sistema financiero global negándoles acceso al dólar y al sistema SWIFT.',hl:'🇷🇺 Cuando EE.UU. sancionó a Rusia en 2022, congeló 300 mil millones de dólares en reservas rusas. Todo el mundo vio lo que podía pasarle si dependía del dólar.'},
-  {lb:'Tendencia',lc:'#FAEEDA',lt:'#854F0B',h:'¿Se está debilitando el dólar?',tx:'Varios países buscan alternativas al dólar para protegerse de posibles sanciones.',cs:[{i:'🇨🇳',t:'China creó el yuan digital y acuerdos comerciales en yuanes con Arabia Saudita'},{i:'🌍',t:'El BRICS explora una posible moneda de reserva común para el bloque'},{i:'📉',t:'La participación del dólar en reservas globales bajó del 72% (2001) al 57% (2024)'},{i:'⚡',t:'Pero ninguna moneda puede reemplazar al dólar hoy. El proceso tomará décadas.'}]},
-  {lb:'Colombia',lc:'#E1F5EE',lt:'#0F6E56',h:'¿Cómo afecta a Colombia?',vi:'🇨🇴',vc:'El peso colombiano sube y baja según la fortaleza del dólar',tx:'Colombia exporta petróleo, café y carbón, todo en dólares. Cuando el dólar sube, el peso cae — encarece importaciones pero mejora ingresos exportadores.',hl:'💡 Cuando la FED sube tasas de interés, el peso colombiano puede caer bruscamente. Por eso el Banco de la República monitorea eso constantemente.'}
- ],
- quiz:[
-  {q:'¿Qué acuerdo creó el sistema del petrodólar en 1974?',o:['Tratado de Roma','Acuerdo EE.UU.-Arabia Saudita','Bretton Woods','OPEP-USA'],c:1,e:'EE.UU. acordó con Arabia Saudita vender petróleo solo en dólares, garantizando demanda global permanente.'},
-  {q:'¿Cuánto bajó la participación del dólar en reservas globales entre 2001 y 2024?',o:['De 90% a 70%','De 72% a 57%','De 80% a 60%','No ha bajado'],c:1,e:'Del 72% en 2001 al 57% en 2024. La desdolarización es lenta pero real.'},
-  {q:'¿Qué sucede en Colombia cuando la FED sube sus tasas de interés?',o:['El peso se fortalece','Las exportaciones caen','El peso se debilita','El café sube automáticamente'],c:2,e:'Tasas más altas en EE.UU. atraen capital global al dólar, debilitando monedas emergentes como el peso.'}
- ]
-},
-{id:'ucrania',mod:'con',title:'Guerra de Ucrania: causas profundas',desc:'Más allá de lo que muestran los medios',t:'12 min',xp:70,dif:'medium',
- steps:[
-  {lb:'Historia',lc:'#FBEAF0',lt:'#993556',h:'El contexto que no se explica',vi:'🗺️',vc:'Ucrania: entre Europa occidental y la esfera rusa',tx:'Para entender la guerra no basta ver las noticias de 2022. Hay que retroceder al fin de la Guerra Fría (1991), cuando la URSS se disolvió y Ucrania se independizó.',hl:'🔑 Rusia siempre consideró a Ucrania parte de su esfera de influencia. Para el Kremlin, Ucrania en la OTAN sería como si Rusia tuviera misiles en México.'},
-  {lb:'Geopolítica',lc:'#E6F1FB',lt:'#185FA5',h:'La expansión de la OTAN',vi:'🛡️',vc:'De 12 países en 1991 a 32 en 2024 — avanzó hacia el este',tx:'La OTAN prometió en 1990 no expandirse al este. Sin embargo incorporó a Polonia, los países bálticos y más.',cs:[{i:'🇷🇺',t:'Rusia ve cada país en la OTAN como una amenaza directa en su frontera'},{i:'🇺🇸',t:'EE.UU. y la OTAN dicen que cada país soberano elige sus alianzas'},{i:'⚔️',t:'En 2022, cuando Ucrania aceleró su adhesión a la OTAN, Rusia invadió'}]},
-  {lb:'Energía',lc:'#FAEEDA',lt:'#854F0B',h:'El factor energético',vi:'⚡',vc:'Europa dependía del gas ruso — una palanca enorme',tx:'Antes de la guerra, el 40% del gas europeo venía de Rusia. Los gasoductos Nord Stream cruzaban Ucrania, dando a Rusia enorme poder sobre Europa.',hl:'💥 En 2022 los Nord Stream fueron saboteados (misterio aún quién). Europa pagó precios altísimos por gas a EE.UU. y Qatar — beneficiando enormemente a Washington.'},
-  {lb:'Consecuencias',lc:'#E1F5EE',lt:'#0F6E56',h:'Impacto en el mundo',tx:'La guerra no es solo un conflicto local. Sus efectos se sienten en todo el planeta.',cs:[{i:'🌾',t:'Ucrania y Rusia producen el 30% del trigo mundial. La guerra disparó precios del pan en África'},{i:'💰',t:'La inflación global de 2022-2023 fue impulsada por precios del gas y cereales'},{i:'🏭',t:'El conflicto aceleró la desglobalización: países producen localmente lo que antes importaban'},{i:'🇨🇴',t:'Colombia aumentó exportaciones de carbón a Europa que buscaba alternativas al carbón ruso'}]},
-  {lb:'Hoy 2026',lc:'#FCEBEB',lt:'#A32D2D',h:'Estado del conflicto en 2026',vi:'⚠️',vc:'Sin ganador militar claro — negociaciones en el horizonte',tx:'El conflicto se prolongó más de lo esperado. Rusia controla el este de Ucrania (Donbás, Crimea). Occidente sigue enviando apoyo a Kiev.',hl:'🕊️ En 2025-2026 comenzaron conversaciones de paz mediadas por terceros. El estatus de los territorios ocupados sigue siendo el obstáculo principal.'}
- ],
- quiz:[
-  {q:'¿Qué porcentaje del gas europeo venía de Rusia antes de la guerra?',o:['10%','25%','40%','60%'],c:2,e:'El 40% del gas europeo venía de Rusia, dándole a Moscú enorme poder de presión.'},
-  {q:'¿Cómo afectó la guerra al precio del trigo mundial?',o:['No tuvo efecto','Bajó','Subió porque ambos son grandes productores','Solo afectó a Europa'],c:2,e:'Rusia y Ucrania producen el 30% del trigo mundial. El conflicto disparó precios del pan globalmente.'},
-  {q:'¿Cómo aprovechó Colombia el conflicto?',o:['Vendió café a Rusia','Aumentó exportaciones de carbón a Europa','Medió en las negociaciones','No hubo impacto'],c:1,e:'Europa buscó alternativas al carbón ruso. Colombia aumentó exportaciones de carbón a Alemania y otros países europeos.'}
- ]
-},
-{id:'chips',mod:'geo',title:'Semiconductores: la guerra invisible',desc:'Por qué los chips son el nuevo petróleo',t:'9 min',xp:65,dif:'hard',
- steps:[
-  {lb:'Concepto',lc:'#E6F1FB',lt:'#185FA5',h:'¿Por qué importan tanto los chips?',vi:'💻',vc:'Smartphones, autos, aviones, armas — todo depende de semiconductores',tx:'Los semiconductores son el cerebro de toda la tecnología moderna. Sin ellos no hay IA, carros eléctricos, armas modernas ni hospitales digitales.',hl:'🎯 Quien controle la producción de chips avanzados, controla el futuro tecnológico y militar del mundo.'},
-  {lb:'Geografía',lc:'#EEEDFE',lt:'#534AB7',h:'¿Quién controla los chips hoy?',ig:[{f:'🇹🇼',l:'Taiwán (TSMC)',v:'Fabrica el 92% de los chips más avanzados del mundo'},{f:'🇰🇷',l:'Corea del Sur',v:'Samsung y SK Hynix. Memorias y chips de gama media.'},{f:'🇳🇱',l:'Países Bajos (ASML)',v:'ÚNICA empresa que hace máquinas para grabar chips nanométricos'},{f:'🇺🇸',l:'EE.UU.',v:'Diseña (Nvidia, Intel) pero ya no fabrica los más avanzados'},{f:'🇨🇳',l:'China',v:'Quiere independencia. Aún no puede fabricar los más avanzados.'}]},
-  {lb:'Conflicto',lc:'#FBEAF0',lt:'#993556',h:'La guerra de chips EE.UU. vs China',vi:'⚔️',vc:'EE.UU. prohibió exportar chips avanzados a China en 2022',tx:'En 2022, EE.UU. prohibió vender chips de alta gama y equipos de fabricación a China. Objetivo: detener el avance tecnológico y militar chino.',cs:[{i:'🚫',t:'China no puede comprar chips Nvidia H100 para entrenar IA militar'},{i:'🏭',t:'EE.UU. invierte $52 mil millones (Ley CHIPS) para traer fabricación de vuelta'},{i:'🇨🇳',t:'China respondió: invirtió $150 mil millones para ser independiente en chips para 2030'}]},
-  {lb:'Taiwán',lc:'#FAEEDA',lt:'#854F0B',h:'Taiwán: el punto más peligroso del mundo',vi:'🏝️',vc:'A 180 km de China — fabrica el 92% de los chips avanzados',tx:'China considera Taiwán parte de su territorio. Si lo tomara, controlaría el 92% de los chips más avanzados del mundo.',hl:'🚨 EE.UU. mantiene ambigüedad: ni confirma ni niega que defendería militarmente a Taiwán. Es deliberado para disuadir a China sin provocar guerra abierta.'},
-  {lb:'Futuro',lc:'#E1F5EE',lt:'#0F6E56',h:'¿Cómo termina esto?',tx:'La guerra de chips determinará quién domina la IA, las armas autónomas y la economía digital del siglo XXI.',cs:[{i:'🤖',t:'La IA avanzada requiere miles de chips Nvidia H100 — escasos y controlados'},{i:'🏗️',t:'EE.UU. y aliados construyen fábricas en Arizona, Alemania, Japón y Corea'},{i:'🇨🇳',t:'China fabricó un chip de 7nm propio (SMIC) en 2023 — adelanto sorpresivo'},{i:'📊',t:'Mercado de semiconductores: $600 mil millones/año, crece 15% anual'}]}
- ],
- quiz:[
-  {q:'¿Qué porcentaje de chips avanzados fabrica Taiwán?',o:['30%','60%','92%','100%'],c:2,e:'TSMC (Taiwán) fabrica el 92% de los chips más avanzados del mundo, lo que hace a la isla estratégicamente crucial.'},
-  {q:'¿Qué hizo EE.UU. en 2022 para frenar a China?',o:['Invadió Taiwán','Prohibió vender chips avanzados a China','Creó moneda digital','Firmó acuerdo exclusivo con TSMC'],c:1,e:'EE.UU. impuso controles de exportación prohibiendo vender chips Nvidia y equipos de fabricación avanzados a China.'},
-  {q:'¿Por qué los Países Bajos son cruciales en esta guerra?',o:['Fabrican los chips más rápidos','Tienen la única empresa que hace las máquinas para grabar chips (ASML)','Son el mayor consumidor','Tienen el mayor depósito de silicio'],c:1,e:'ASML (Holanda) es la ÚNICA empresa en el mundo que fabrica las máquinas EUV necesarias para hacer chips avanzados.'}
- ]
-},
-{id:'otan',mod:'geo',title:'¿Qué es la OTAN y qué hace hoy?',desc:'La alianza militar más poderosa de la historia',t:'7 min',xp:45,dif:'easy',
- steps:[
-  {lb:'Historia',lc:'#E6F1FB',lt:'#185FA5',h:'Nació para contener a la URSS',vi:'🛡️',vc:'Fundada en 1949 — hoy tiene 32 miembros',tx:'La OTAN fue creada en 1949 para responder colectivamente si la URSS atacaba a Europa occidental.',hl:'📌 El Artículo 5 es su corazón: un ataque a un miembro es un ataque a todos. Se ha activado UNA vez: el 12 de septiembre de 2001, tras el 9/11.'},
-  {lb:'Hoy',lc:'#E1F5EE',lt:'#0F6E56',h:'La OTAN en el siglo XXI',vi:'🌍',vc:'De alianza regional a presencia global en 4 continentes',tx:'Tras la caída de la URSS, la OTAN se expandió hacia el este y amplió su rol a Afganistán, Libia y más.',cs:[{i:'🇷🇺',t:'La invasión de Ucrania (2022) revitalizó la OTAN: Finlandia y Suecia se unieron'},{i:'💰',t:'Los países deben gastar el 2% de su PIB en defensa. Alemania aumentó su presupuesto histórico'},{i:'🌐',t:'La OTAN ahora considera a China como un desafío sistémico, no solo a Rusia'}]},
-  {lb:'Debate',lc:'#FAEEDA',lt:'#854F0B',h:'¿Es útil o provoca conflictos?',tx:'La OTAN genera posiciones encontradas en el debate geopolítico.',cs:[{i:'✅',t:'75 años sin guerra entre sus miembros. Disuasión efectiva.'},{i:'⚠️',t:'Su expansión fue percibida como amenaza por Rusia, contribuyendo a la guerra de Ucrania'},{i:'🇺🇸',t:'Trump (2024-2026) cuestionó el compromiso de EE.UU. si los miembros no pagan el 2%'}]},
-  {lb:'Colombia',lc:'#EEEDFE',lt:'#534AB7',h:'¿Afecta a Colombia?',vi:'🇨🇴',vc:'Colombia: único socio global de la OTAN en América Latina (desde 2018)',tx:'Colombia tiene estatus especial de socio global de la OTAN: cooperación en entrenamiento, inteligencia y equipos. No es miembro pleno.',hl:'🤔 Debate en Colombia: ¿Es ventaja para la seguridad o compromete la política exterior frente a Venezuela y Cuba?'},
-  {lb:'Futuro',lc:'#FCEBEB',lt:'#A32D2D',h:'¿Qué viene para la OTAN?',vi:'🔭',vc:'Más grande, más cara, con mirada hacia Asia-Pacífico',tx:'La OTAN aumenta tropas en Europa del Este y evalúa expandir su rol hacia Asia para contrarrestar a China.',hl:'📍 Japón, Corea del Sur, Australia y Nueva Zelanda participaron como observadores — señal de que la alianza mira más allá del Atlántico.'}
- ],
- quiz:[
-  {q:'¿Cuántas veces se ha activado el Artículo 5 de la OTAN?',o:['Nunca','1 vez (tras el 9/11)','3 veces','5 veces'],c:1,e:'Solo se ha activado una vez: el 12 de septiembre de 2001, un día después del ataque a EE.UU.'},
-  {q:'¿Qué papel tiene Colombia en la OTAN?',o:['Es miembro pleno','No tiene vínculo','Es el único socio global en América Latina','Tiene observadores'],c:2,e:'Colombia obtuvo estatus de socio global en 2018, el único en Latinoamérica, permitiendo cooperación militar e inteligencia.'},
-  {q:'¿Qué hicieron Finlandia y Suecia en 2023-2024?',o:['Salieron de la OTAN','Se unieron a la OTAN rompiendo su neutralidad histórica','Firmaron paz con Rusia','Aumentaron comercio con China'],c:1,e:'La invasión rusa a Ucrania convenció a ambos países de abandonar su neutralidad histórica y unirse a la OTAN.'}
- ]
-},
-{id:'fmi',mod:'eco',title:'FMI y Banco Mundial: ¿ayuda o control?',desc:'Las instituciones que prestan dinero y ponen condiciones',t:'10 min',xp:55,dif:'medium',
- steps:[
-  {lb:'Qué son',lc:'#E6F1FB',lt:'#185FA5',h:'Las instituciones de Bretton Woods',vi:'🏛️',vc:'Creadas en 1944 para estabilizar la economía global',tx:'El FMI y el Banco Mundial nacieron en 1944 para evitar que se repitiera la Gran Depresión. Ambos tienen sede en Washington y son controlados principalmente por países occidentales.',hl:'EE.UU. tiene poder de veto en el FMI. Por eso muchos países en desarrollo los ven como herramientas de política exterior americana.'},
-  {lb:'Diferencias',lc:'#E1F5EE',lt:'#0F6E56',h:'¿En qué se diferencian?',ig:[{f:'💰',l:'FMI',v:'Préstamos de emergencia por crisis de balanza de pagos. Corto plazo.'},{f:'🏗️',l:'Banco Mundial',v:'Financiamiento largo para desarrollo: infraestructura, salud, educación.'},{f:'📋',l:'FMI — condiciones',v:'Exige recortar gasto público, privatizar y abrir mercados.'},{f:'📋',l:'Banco Mundial',v:'Proyectos con condicionalidades sobre gobernanza y medio ambiente.'}]},
-  {lb:'Controversia',lc:'#FBEAF0',lt:'#993556',h:'El Consenso de Washington',vi:'💊',vc:'Privatización + austeridad + apertura de mercados = receta de los 90s',tx:'En los años 90, el FMI impuso en América Latina reformas de Consenso de Washington: privatizar empresas públicas, reducir subsidios, abrir fronteras al libre comercio.',hl:'⚠️ Argentina siguió las recetas y colapsó en 2001. Colombia tuvo resultados más graduales. Las recetas generaron desigualdad aunque controlaron la inflación.'},
-  {lb:'Colombia',lc:'#FAEEDA',lt:'#854F0B',h:'Colombia y el FMI',vi:'🇨🇴',vc:'Colombia tiene Línea de Crédito Flexible (LCF) por $11 mil millones',tx:'Colombia mantiene una LCF con el FMI como paraguas preventivo: no usa los fondos normalmente, pero dan confianza a los mercados.',cs:[{i:'📊',t:'Permite que los bonos colombianos tengan tasas de interés más bajas'},{i:'💹',t:'Si el peso cae violentamente, el Banco de la República puede activar esos fondos'},{i:'🤔',t:'Debate: ¿es seguro depender de esa red de seguridad o nos compromete políticamente?'}]},
-  {lb:'Alternativas',lc:'#EEEDFE',lt:'#534AB7',h:'Los nuevos rivales del FMI',tx:'El dominio del FMI está siendo desafiado por nuevas instituciones.',cs:[{i:'🇨🇳',t:'Banco Asiático de Inversión (AIIB): creado por China en 2016, ya tiene 109 miembros'},{i:'🌍',t:'Nuevo Banco de Desarrollo del BRICS: $100 mil millones disponibles'},{i:'📍',t:'China presta bilateralmente a África y América Latina sin las condiciones del FMI'},{i:'⚖️',t:'Debate: ¿son mejores esos préstamos o crean trampa de deuda con China?'}]}
- ],
- quiz:[
-  {q:'¿Qué es la Línea de Crédito Flexible que Colombia tiene con el FMI?',o:['Una deuda activa','Un crédito preventivo que da confianza a los mercados','Un acuerdo para privatizar empresas','Un préstamo para infraestructura'],c:1,e:'La LCF es una red de seguridad: el solo hecho de tenerla reduce las tasas de los bonos colombianos.'},
-  {q:'¿Cuál fue el resultado del Consenso de Washington en América Latina?',o:['Éxito total','Fracaso total','Resultados mixtos: controló inflación pero generó desigualdad','No se aplicó'],c:2,e:'Resultados mixtos: controló la hiperinflación de los 80s pero generó privatizaciones desiguales. Argentina colapsó en 2001.'},
-  {q:'¿Qué crítica se le hace a los préstamos chinos?',o:['Son muy pequeños','Exigen reformas políticas','Pueden crear trampa de deuda con China como acreedor','China no presta a emergentes'],c:2,e:'Sri Lanka cedió un puerto a China por 99 años al no poder pagar su deuda. El riesgo de dependencia estratégica es real.'}
- ]
-},
-{id:'energia',mod:'ene',title:'La transición energética',desc:'Quién gana y quién pierde en el cambio de fósiles a renovables',t:'8 min',xp:55,dif:'medium',
- steps:[
-  {lb:'Contexto',lc:'#EAF3DE',lt:'#3B6D11',h:'El mundo cambia su energía',vi:'☀️',vc:'Solar y eólica ya son más baratas que el carbón',tx:'La humanidad está en la mayor transformación energética desde la Revolución Industrial. Petróleo, gas y carbón están siendo reemplazados por solar, eólica e hidrógeno verde.',hl:'📊 En 2024, el 42% de la electricidad mundial ya viene de renovables. En 2030 podría superar el 60%. Esto cambia quién tiene poder geopolítico.'},
-  {lb:'Ganadores',lc:'#E1F5EE',lt:'#0F6E56',h:'¿Quiénes ganan?',ig:[{f:'🇨🇳',l:'China',v:'Fabrica el 80% de los paneles solares. Lidera baterías y autos eléctricos.'},{f:'🇩🇪',l:'Alemania',v:'Pioneer en eólica y solar. Exporta tecnología.'},{f:'🇨🇱',l:'Chile',v:'Atacama: solar más barato del mundo. Exportará hidrógeno verde.'},{f:'🇨🇴',l:'Colombia',v:'Potencial enorme en solar, eólica (La Guajira) e hidrógeno verde. Etapa temprana.'}]},
-  {lb:'Perdedores',lc:'#FCEBEB',lt:'#A32D2D',h:'¿Quiénes pierden?',vi:'📉',vc:'Los países que dependen del petróleo enfrentan el mayor riesgo',tx:'Los grandes productores de combustibles fósiles enfrentan una amenaza existencial a largo plazo.',cs:[{i:'🇸🇦',t:'Arabia Saudita invierte billones en diversificar antes de que el petróleo baje de valor'},{i:'🇷🇺',t:'Rusia sin petrodólares pierde su principal fuente de ingresos y presión geopolítica'},{i:'🇻🇪',t:'Venezuela, Nigeria, Irak — economías monocultivo de petróleo sin plan B'}]},
-  {lb:'Minerales',lc:'#EEEDFE',lt:'#534AB7',h:'La nueva geopolítica de los minerales',vi:'⛏️',vc:'Litio, cobalto, níquel, cobre — los nuevos recursos de poder',tx:'Las baterías y paneles solares requieren minerales específicos. La carrera por controlarlos es la nueva geopolítica del siglo XXI.',hl:'🌎 El Triángulo del Litio (Argentina, Bolivia, Chile) tiene el 60% de reservas mundiales de litio. Colombia tiene potencial en cobre y níquel.'},
-  {lb:'Colombia',lc:'#E1F5EE',lt:'#0F6E56',h:'Oportunidad y riesgo para Colombia',tx:'La transición energética presenta un dilema para Colombia.',cs:[{i:'⚠️',t:'El 40% de las exportaciones son petróleo y carbón. Si baja la demanda global, golpea fuerte'},{i:'✅',t:'La Guajira tiene el mejor recurso eólico de América Latina — potencial exportador'},{i:'🤔',t:'¿Cuánto tiempo tiene Colombia para la transición antes del shock del mercado?'},{i:'📊',t:'El debate sobre dejar el petróleo en el suelo vs. necesitar esos ingresos fiscales'}]}
- ],
- quiz:[
-  {q:'¿Qué porcentaje de la electricidad mundial venía de renovables en 2024?',o:['15%','28%','42%','65%'],c:2,e:'En 2024, el 42% de la electricidad mundial ya proviene de renovables. El cambio ocurre más rápido de lo esperado.'},
-  {q:'¿Qué región tiene el 60% de las reservas mundiales de litio?',o:['África Central','Siberia','El Triángulo del Litio (Argentina, Bolivia, Chile)','Sudeste asiático'],c:2,e:'El Triángulo del Litio en Sudamérica contiene el 60% de reservas conocidas de litio, clave para baterías eléctricas.'},
-  {q:'¿Cuál es el principal riesgo de la transición para Colombia?',o:['Que suba el petróleo','Que el 40% de sus exportaciones pierdan demanda global','Que China compita con sus renovables','Que Venezuela tome sus campos'],c:1,e:'El petróleo y carbón son el 40% de las exportaciones colombianas. Una caída sostenida golpearía duramente las finanzas públicas.'}
- ]
-},
-{id:'latam',mod:'lat',title:'América Latina en el tablero global',desc:'Por qué el continente importa más que nunca',t:'9 min',xp:50,dif:'easy',
- steps:[
-  {lb:'Visión',lc:'#EEEDFE',lt:'#534AB7',h:'¿Por qué América Latina importa hoy?',vi:'🌎',vc:'La región tiene lo que el mundo necesita: minerales, agua, alimentos, energía',tx:'América Latina estuvo décadas en la periferia. Hoy, en la competencia EE.UU.-China, se volvió estratégica por sus recursos y posición geográfica.',hl:'🎯 La región tiene: el 30% del agua dulce del mundo, el 27% de las tierras cultivables, el 60% del litio y enormes reservas de petróleo.'},
-  {lb:'China',lc:'#E6F1FB',lt:'#185FA5',h:'China avanza rápidamente',vi:'🇨🇳',vc:'Es hoy el mayor socio comercial de Brasil, Chile y Perú',tx:'Desde 2000, China invirtió más de $150 mil millones en infraestructura latinoamericana: puertos, carreteras, plantas eléctricas, minería.',cs:[{i:'⚓',t:'China construye puertos en Perú (Chancay), Cuba, Ecuador — control de rutas comerciales'},{i:'📡',t:'Huawei instaló la infraestructura de telecomunicaciones en muchos países'},{i:'🛒',t:'Colombia es uno de los pocos países sin TLC con China — debate activo'}]},
-  {lb:'EE.UU.',lc:'#FAEEDA',lt:'#854F0B',h:'EE.UU. despertó tarde',vi:'🇺🇸',vc:'Washington reaccionó cuando China ya tenía presencia establecida',tx:'EE.UU. descuidó la región en los 2000s-2010s. Cuando China avanzó, trató de reaccionar con nuevas iniciativas de infraestructura.',hl:'🔄 La competencia incluye 5G, satélites, bases militares de entrenamiento e influencia en narrativas políticas de la región.'},
-  {lb:'Bloques',lc:'#E1F5EE',lt:'#0F6E56',h:'La fragmentación política regional',tx:'América Latina no es un bloque unido. Hay tensiones internas profundas.',cs:[{i:'🔴',t:'Eje progresista: Venezuela, Cuba, Nicaragua, Bolivia, México (parcialmente)'},{i:'🔵',t:'Eje pro-mercado: Ecuador, Paraguay, Uruguay, Perú (variable según gobierno)'},{i:'⚖️',t:'Pivotes: Brasil, Colombia, Chile, Argentina — cambian según quién gobierna'},{i:'🚧',t:'Esta fragmentación reduce el poder de negociación regional frente a potencias globales'}]},
-  {lb:'Colombia',lc:'#FBEAF0',lt:'#993556',h:'Colombia: ¿dónde se posiciona?',vi:'🇨🇴',vc:'En la encrucijada: aliado de EE.UU., vecino de Venezuela, tentado por China',tx:'Colombia tiene posición geopolítica compleja: aliado histórico de EE.UU., vecino difícil de Venezuela, y creciente comercio con China.',hl:'🤔 El gobierno de Petro (2022-2026) buscó distancia de EE.UU. y acercamiento a Venezuela y China. El próximo gobierno definirá el rumbo del país en el tablero regional.'}
- ],
- quiz:[
-  {q:'¿Qué porcentaje del agua dulce mundial tiene América Latina?',o:['10%','20%','30%','50%'],c:2,e:'América Latina posee el 30% del agua dulce del mundo, estratégica en un planeta con escasez hídrica creciente.'},
-  {q:'¿Cuánto invirtió China en infraestructura latinoamericana desde 2000?',o:['$15 mil millones','$50 mil millones','más de $150 mil millones','$500 mil millones'],c:2,e:'China invirtió más de $150 mil millones, principalmente en puertos, minería, energía y telecomunicaciones.'},
-  {q:'¿Cuál es el principal desafío político de América Latina como región?',o:['Falta de recursos','Fragmentación política que reduce poder de negociación','Demasiada dependencia de China','Exceso de integración'],c:1,e:'La división política frecuente impide que la región hable con una sola voz ante China, EE.UU. o la UE.'}
- ]
-}
-];
-
-var CATS=['Todos','Geopolítica','Economía','Conflictos','Energía','Latam'];
-var ACAT='Todos';
+var ST=JSON.parse(localStorage.getItem('gm3')||'null')||{xp:340,streak:7,done:[],aiN:0};
+function SAV(){localStorage.setItem('gm3',JSON.stringify(ST));}
+var DN=new Set(ST.done||[]);
+var CL=0,CS=0,CQ=0,QC=0,QSA={},T0=null;
+var AIH=[],AIB=false;
+var MODS=[{"id": "geo", "name": "Geopolitica", "icon": "\ud83c\udf0d", "bg": "#E6F1FB", "fg": "#185FA5", "fill": "#378ADD"}, {"id": "eco", "name": "Economia mundial", "icon": "\ud83d\udcc8", "bg": "#E1F5EE", "fg": "#0F6E56", "fill": "#1D9E75"}, {"id": "con", "name": "Conflictos", "icon": "\u2694\ufe0f", "bg": "#FBEAF0", "fg": "#993556", "fill": "#D4537E"}, {"id": "ene", "name": "Energia", "icon": "\u26a1", "bg": "#EAF3DE", "fg": "#3B6D11", "fill": "#639922"}, {"id": "lat", "name": "America Latina", "icon": "\ud83c\udf0e", "bg": "#EEEDFE", "fg": "#534AB7", "fill": "#7F77DD"}, {"id": "pow", "name": "Poder global", "icon": "\ud83c\udfdb\ufe0f", "bg": "#FAEEDA", "fg": "#854F0B", "fill": "#EF9F27"}];
+var LS=[{"id": "brics", "mod": "geo", "title": "El BRICS y el nuevo orden mundial", "desc": "El bloque que desafia el orden economico occidental", "t": "8 min", "xp": 50, "dif": "easy", "steps": [{"lb": "Contexto", "lc": "#E6F1FB", "lt": "#185FA5", "h": "Que es el BRICS?", "vi": "\ud83c\udf0d", "vc": "Brasil, Rusia, India, China, Sudafrica + 5 nuevos (2024)", "tx": "El BRICS es una alianza de economias emergentes formada en 2009. Su nombre viene de las iniciales de sus miembros originales.", "hl": "Representa el 40% de la poblacion mundial y mas del 32% del PIB global, superando al G7 en poder de compra."}, {"lb": "Concepto", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "Por que nacio?", "vi": "\u2696\ufe0f", "vc": "El Sur Global busca peso propio en el tablero internacional", "tx": "Estos paises sentian que el orden economico controlado por EE.UU., Europa y el FMI no representaba su peso real en la economia mundial.", "cs": [{"i": "\ud83c\udfe6", "t": "Crear el Nuevo Banco de Desarrollo (NDB) como alternativa al FMI"}, {"i": "\ud83d\udcb1", "t": "Reducir la dependencia del dolar en el comercio internacional"}, {"i": "\ud83d\udde3\ufe0f", "t": "Coordinar posiciones en la ONU, el G20 y otros foros globales"}]}, {"lb": "Datos", "lc": "#FAEEDA", "lt": "#854F0B", "h": "Los miembros en numeros", "ig": [{"f": "\ud83c\udde8\ud83c\uddf3", "l": "China", "v": "PIB #2 del mundo. Motor industrial global."}, {"f": "\ud83c\uddee\ud83c\uddf3", "l": "India", "v": "Economia de mayor crecimiento. 1.400M personas."}, {"f": "\ud83c\udde7\ud83c\uddf7", "l": "Brasil", "v": "Mayor economia de America Latina. Potencia agricola."}, {"f": "\ud83c\uddf7\ud83c\uddfa", "l": "Rusia", "v": "Mayor reservas de gas. Potencia nuclear."}, {"f": "\ud83c\uddf8\ud83c\udde6", "l": "Arabia Saudita", "v": "Nuevo 2024. Controla el 17% del petroleo OPEP."}]}, {"lb": "Expansion", "lc": "#FCEBEB", "lt": "#A32D2D", "h": "La expansion de 2024", "vi": "\ud83d\uddfa\ufe0f", "vc": "Iran, Etiopia, Egipto, Arabia Saudita y Emiratos se unieron", "tx": "En 2024 el BRICS se expandio con 5 nuevos miembros, controlando ahora una parte enorme del petroleo mundial y las rutas comerciales del hemisferio sur.", "hl": "Si el BRICS logra vender petroleo en monedas propias, el sistema del petrodolar estaria en jaque y el orden financiero global cambiaria radicalmente."}, {"lb": "Perspectivas", "lc": "#EEEDFE", "lt": "#534AB7", "h": "Amenaza real al orden occidental?", "tx": "El BRICS genera debates intensos en foros diplomaticos y economicos de todo el mundo.", "cs": [{"i": "\u2705", "t": "A favor: da voz a paises historicamente marginados de las decisiones globales"}, {"i": "\u26a0\ufe0f", "t": "Critica: incluye regimenes autoritarios (Rusia, Iran) con agendas propias"}, {"i": "\ud83e\udd14", "t": "Realidad: sus miembros compiten entre si. China e India tienen tensiones fronterizas"}, {"i": "\ud83c\udde8\ud83c\uddf4", "t": "Colombia: si el dolar pierde peso, las exportaciones colombianas en USD se afectarian"}]}], "quiz": [{"q": "Cuanto del PIB mundial representa el BRICS?", "o": ["15%", "25%", "mas del 32%", "50%"], "c": 2, "e": "El BRICS supera el 32% del PIB global en paridad de poder adquisitivo, mas que el G7 combinado."}, {"q": "Cual es el principal objetivo economico del BRICS?", "o": ["Adoptar el euro", "Reducir dependencia del dolar", "Crear un ejercito conjunto", "Eliminar comercio con EE.UU."], "c": 1, "e": "El BRICS busca reducir la hegemonia del dolar promoviendo comercio en monedas locales entre sus miembros."}, {"q": "Cual de estos paises se unio al BRICS en 2024?", "o": ["Mexico", "Arabia Saudita", "Turquia", "Nigeria"], "c": 1, "e": "Arabia Saudita, Iran, Etiopia, Egipto y UAE ingresaron en 2024, transformando el bloque en potencia energetica."}]}, {"id": "dolar", "mod": "eco", "title": "El dolar como arma geopolitica", "desc": "Como EE.UU. usa su moneda para controlar el mundo", "t": "10 min", "xp": 60, "dif": "medium", "steps": [{"lb": "Contexto", "lc": "#E6F1FB", "lt": "#185FA5", "h": "El dolar no es solo dinero", "vi": "\ud83d\udcb5", "vc": "La moneda mas usada: aprox 90% del comercio global", "tx": "Desde los Acuerdos de Bretton Woods (1944), el dolar es la moneda de reserva mundial. Paises, bancos y empresas de todo el mundo guardan dolares como respaldo.", "hl": "EE.UU. tiene un privilegio exorbitante: puede imprimir dinero y exportar su inflacion al mundo entero."}, {"lb": "Historia", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "El sistema del petrodolar", "vi": "\ud83d\udee2\ufe0f", "vc": "Desde 1974: todo el petroleo del mundo se vende en dolares", "tx": "En 1974, EE.UU. acordo con Arabia Saudita que el petroleo mundial se venderia SOLO en dolares, y Arabia invertia sus ganancias en bonos del tesoro americano.", "cs": [{"i": "1\ufe0f\u20e3", "t": "Para comprar petroleo, primero hay que comprar dolares"}, {"i": "2\ufe0f\u20e3", "t": "Eso genera demanda artificial y permanente de dolares en todo el mundo"}, {"i": "3\ufe0f\u20e3", "t": "EE.UU. puede financiar su deuda porque todos necesitan sus dolares"}]}, {"lb": "Arma financiera", "lc": "#FBEAF0", "lt": "#993556", "h": "Las sanciones: bloquear el dolar", "vi": "\ud83d\udeab", "vc": "Iran, Rusia, Venezuela, Cuba - desconectados del sistema dolar", "tx": "EE.UU. puede excluir paises del sistema financiero global negandoles acceso al dolar y al sistema SWIFT (pagos bancarios internacionales).", "hl": "Cuando EE.UU. sanciono a Rusia en 2022, congelo 300 mil millones de dolares en reservas rusas. Todo el mundo vio lo que podia pasarle si dependia del dolar."}, {"lb": "Tendencia", "lc": "#FAEEDA", "lt": "#854F0B", "h": "Se esta debilitando el dolar?", "tx": "Varios paises buscan alternativas al dolar para protegerse de posibles sanciones futuras.", "cs": [{"i": "\ud83c\udde8\ud83c\uddf3", "t": "China creo el yuan digital y acuerdos de comercio en yuanes con Arabia Saudita"}, {"i": "\ud83c\udf0d", "t": "El BRICS explora una posible moneda de reserva comun para el bloque"}, {"i": "\ud83d\udcc9", "t": "La participacion del dolar en reservas globales bajo del 72% (2001) al 57% (2024)"}, {"i": "\u26a1", "t": "Pero ninguna moneda puede reemplazar al dolar hoy. El proceso tomara decadas."}]}, {"lb": "Colombia", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "Como afecta a Colombia?", "vi": "\ud83c\udde8\ud83c\uddf4", "vc": "El peso colombiano sube y baja segun la fortaleza del dolar", "tx": "Colombia exporta petroleo, cafe y carbon, todo en dolares. Cuando el dolar sube, el peso cae, lo que encarece importaciones pero mejora ingresos exportadores.", "hl": "Cuando la FED sube tasas de interes, el peso colombiano puede caer bruscamente. Por eso el Banco de la Republica monitorea eso constantemente."}], "quiz": [{"q": "Que acuerdo creo el sistema del petrodolar en 1974?", "o": ["Tratado de Roma", "Acuerdo EE.UU.-Arabia Saudita", "Bretton Woods original", "OPEP-USA"], "c": 1, "e": "EE.UU. acordo con Arabia Saudita vender petroleo solo en dolares, garantizando demanda global permanente de la moneda americana."}, {"q": "Cuanto bajo la participacion del dolar en reservas globales entre 2001 y 2024?", "o": ["De 90% a 70%", "De 72% a 57%", "De 80% a 60%", "No ha bajado"], "c": 1, "e": "Del 72% en 2001 al 57% en 2024. La desdolarizacion es lenta pero real y continua."}, {"q": "Que sucede en Colombia cuando la FED sube sus tasas de interes?", "o": ["El peso se fortalece", "Las exportaciones caen directamente", "El peso colombiano se debilita", "El cafe sube de precio automaticamente"], "c": 2, "e": "Tasas mas altas en EE.UU. atraen capital global al dolar, debilitando monedas emergentes como el peso colombiano."}]}, {"id": "ucrania", "mod": "con", "title": "Guerra de Ucrania: causas profundas", "desc": "Mas alla de lo que muestran los medios de comunicacion", "t": "12 min", "xp": 70, "dif": "medium", "steps": [{"lb": "Historia", "lc": "#FBEAF0", "lt": "#993556", "h": "El contexto que no se explica", "vi": "\ud83d\uddfa\ufe0f", "vc": "Ucrania: entre Europa occidental y la esfera rusa", "tx": "Para entender la guerra no basta ver las noticias de 2022. Hay que retroceder al fin de la Guerra Fria (1991) cuando la URSS se disolvio y Ucrania se independizo.", "hl": "Rusia siempre considero a Ucrania parte de su esfera de influencia natural. Para el Kremlin, Ucrania en la OTAN seria como si Rusia tuviera misiles en Mexico."}, {"lb": "Geopolitica", "lc": "#E6F1FB", "lt": "#185FA5", "h": "La expansion de la OTAN", "vi": "\ud83d\udee1\ufe0f", "vc": "De 12 paises en 1991 a 32 en 2024, avanzo hacia el este", "tx": "La OTAN prometio en 1990 no expandirse al este. Sin embargo incorporo a Polonia, los paises balticos y mas naciones del antiguo bloque sovietico.", "cs": [{"i": "\ud83c\uddf7\ud83c\uddfa", "t": "Rusia ve cada pais en la OTAN como una amenaza directa en su frontera"}, {"i": "\ud83c\uddfa\ud83c\uddf8", "t": "EE.UU. y la OTAN dicen que cada pais soberano elige libremente sus alianzas"}, {"i": "\u2694\ufe0f", "t": "En 2022, cuando Ucrania acelero su adhesion a la OTAN, Rusia invadio"}]}, {"lb": "Energia", "lc": "#FAEEDA", "lt": "#854F0B", "h": "El factor energetico", "vi": "\u26a1", "vc": "Europa dependia del gas ruso como palanca de poder", "tx": "Antes de la guerra, el 40% del gas europeo venia de Rusia. Los gasoductos Nord Stream cruzaban Ucrania, dando a Rusia enorme poder sobre Europa.", "hl": "En 2022 los gasoductos Nord Stream fueron saboteados. Europa pago precios altisimos por gas alternativo a EE.UU. y Qatar, beneficiando enormemente a Washington."}, {"lb": "Consecuencias", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "Impacto en el mundo", "tx": "La guerra no es solo un conflicto local. Sus efectos se sienten en todo el planeta de diversas formas.", "cs": [{"i": "\ud83c\udf3e", "t": "Ucrania y Rusia producen el 30% del trigo mundial. La guerra disparo precios del pan en Africa"}, {"i": "\ud83d\udcb0", "t": "La inflacion global de 2022-2023 fue impulsada por precios del gas y cereales"}, {"i": "\ud83c\udfed", "t": "El conflicto acelero la desglobalizacion: paises producen localmente lo que antes importaban"}, {"i": "\ud83c\udde8\ud83c\uddf4", "t": "Colombia aumento exportaciones de carbon a Europa que buscaba alternativas al carbon ruso"}]}, {"lb": "Hoy 2026", "lc": "#FCEBEB", "lt": "#A32D2D", "h": "Estado del conflicto en 2026", "vi": "\u26a0\ufe0f", "vc": "Sin ganador militar claro, negociaciones en el horizonte", "tx": "El conflicto se prolongo mas de lo esperado. Rusia controla el este de Ucrania (Donbas, Crimea). Occidente sigue enviando apoyo a Kiev.", "hl": "En 2025-2026 comenzaron conversaciones de paz mediadas por terceros paises. El estatus de los territorios ocupados sigue siendo el principal obstaculo para un acuerdo."}], "quiz": [{"q": "Que porcentaje del gas europeo venia de Rusia antes de la guerra?", "o": ["10%", "25%", "40%", "60%"], "c": 2, "e": "El 40% del gas europeo venia de Rusia, dandole a Moscu enorme poder de presion sobre el continente europeo."}, {"q": "Como afecto la guerra al precio del trigo mundial?", "o": ["No tuvo efecto", "Bajo porque Rusia vendio mas", "Subio porque ambos paises son grandes productores", "Solo afecto a Europa"], "c": 2, "e": "Rusia y Ucrania producen el 30% del trigo mundial. El conflicto interrumpio exportaciones y disparo precios del pan globalmente."}, {"q": "Como aprovecho Colombia el conflicto de Ucrania?", "o": ["Vendio cafe a Rusia", "Aumento exportaciones de carbon a Europa", "Medio en las negociaciones de paz", "No hubo impacto en Colombia"], "c": 1, "e": "Europa busco alternativas al carbon ruso. Colombia aumento sus exportaciones de carbon a Alemania y otros paises europeos."}]}, {"id": "chips", "mod": "geo", "title": "Semiconductores: la guerra invisible", "desc": "Por que los chips de computador son el nuevo petroleo", "t": "9 min", "xp": 65, "dif": "hard", "steps": [{"lb": "Concepto", "lc": "#E6F1FB", "lt": "#185FA5", "h": "Por que son tan importantes los chips?", "vi": "\ud83d\udcbb", "vc": "Smartphones, autos, aviones, armas, hospitales: todo depende de semiconductores", "tx": "Los semiconductores son el cerebro de toda la tecnologia moderna. Sin ellos no hay inteligencia artificial, carros electricos, armas modernas ni hospitales digitales.", "hl": "Quien controle la produccion de chips avanzados, controla el futuro tecnologico y militar del mundo. Por eso EE.UU. y China luchan por esa cadena de suministro."}, {"lb": "Geografia del poder", "lc": "#EEEDFE", "lt": "#534AB7", "h": "Quien controla los chips hoy?", "ig": [{"f": "\ud83c\uddf9\ud83c\uddfc", "l": "Taiwan (TSMC)", "v": "Fabrica el 92% de los chips mas avanzados del mundo"}, {"f": "\ud83c\uddf0\ud83c\uddf7", "l": "Corea del Sur", "v": "Samsung y SK Hynix. Memorias y chips de gama media."}, {"f": "\ud83c\uddf3\ud83c\uddf1", "l": "Paises Bajos (ASML)", "v": "UNICA empresa que hace maquinas para grabar chips nanometricos"}, {"f": "\ud83c\uddfa\ud83c\uddf8", "l": "EE.UU.", "v": "Disena (Nvidia, Intel) pero ya no fabrica los mas avanzados"}, {"f": "\ud83c\udde8\ud83c\uddf3", "l": "China", "v": "Quiere independencia. Aun no puede fabricar los mas avanzados."}]}, {"lb": "Conflicto", "lc": "#FBEAF0", "lt": "#993556", "h": "La guerra de chips EE.UU. vs China", "vi": "\u2694\ufe0f", "vc": "EE.UU. prohibio exportar chips avanzados a China en 2022", "tx": "En 2022, EE.UU. prohibio vender chips de alta gama y equipos de fabricacion a China. El objetivo: detener el avance tecnologico y militar chino.", "cs": [{"i": "\ud83d\udeab", "t": "China no puede comprar chips Nvidia H100 para entrenar inteligencia artificial militar"}, {"i": "\ud83c\udfed", "t": "EE.UU. invierte 52 mil millones (Ley CHIPS) para traer fabricacion de vuelta"}, {"i": "\ud83c\udde8\ud83c\uddf3", "t": "China respondio: invirtio 150 mil millones para ser independiente en chips para 2030"}]}, {"lb": "Taiwan", "lc": "#FAEEDA", "lt": "#854F0B", "h": "Taiwan: el punto mas peligroso del mundo", "vi": "\ud83c\udfdd\ufe0f", "vc": "A 180 km de China continental, fabrica el 92% de los chips avanzados", "tx": "China considera Taiwan parte de su territorio y ha prometido reunificarlo. Si lo tomara, controlaria el 92% de los chips avanzados del mundo.", "hl": "EE.UU. mantiene ambiguedad deliberada: ni confirma ni niega que defenderia militarmente a Taiwan. Es para disuadir a China sin provocar guerra abierta."}, {"lb": "Futuro", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "Como termina esto?", "tx": "La guerra de chips determinara quien domina la IA, las armas autonomas y la economia digital del siglo XXI.", "cs": [{"i": "\ud83e\udd16", "t": "La IA avanzada requiere miles de chips Nvidia H100, escasos y controlados por EE.UU."}, {"i": "\ud83c\udfd7\ufe0f", "t": "EE.UU. y aliados construyen fabricas en Arizona, Alemania, Japon y Corea del Sur"}, {"i": "\ud83c\udde8\ud83c\uddf3", "t": "China fabrico un chip de 7nm propio (SMIC) en 2023, adelanto sorpresivo"}, {"i": "\ud83d\udcca", "t": "Mercado global de semiconductores: 600 mil millones por ano, crece 15% anual"}]}], "quiz": [{"q": "Que porcentaje de chips avanzados fabrica Taiwan?", "o": ["30%", "60%", "92%", "100%"], "c": 2, "e": "TSMC (Taiwan) fabrica el 92% de los chips mas avanzados del mundo, haciendo a la isla estrategicamente crucial para el mundo entero."}, {"q": "Que hizo EE.UU. en 2022 para frenar a China tecnologicamente?", "o": ["Invadio Taiwan", "Prohibio vender chips avanzados a China", "Creo una moneda digital propia", "Firmo acuerdo exclusivo con TSMC"], "c": 1, "e": "EE.UU. impuso controles de exportacion prohibiendo vender chips Nvidia y equipos de fabricacion avanzados a China, para frenar su IA y desarrollo militar."}, {"q": "Por que los Paises Bajos son cruciales en esta guerra tecnologica?", "o": ["Fabrican los chips mas rapidos del mundo", "Tienen la unica empresa que hace las maquinas para grabar chips avanzados (ASML)", "Son el mayor consumidor mundial", "Tienen el mayor deposito de silicio"], "c": 1, "e": "ASML (Holanda) es la UNICA empresa en el mundo que fabrica las maquinas de litografia EUV necesarias para hacer chips avanzados. Sin ASML, nadie puede fabricarlos."}]}, {"id": "otan", "mod": "geo", "title": "La OTAN: que es y que hace hoy", "desc": "La alianza militar mas poderosa de la historia y su rol en 2026", "t": "7 min", "xp": 45, "dif": "easy", "steps": [{"lb": "Historia", "lc": "#E6F1FB", "lt": "#185FA5", "h": "Nacio para contener a la URSS", "vi": "\ud83d\udee1\ufe0f", "vc": "Fundada en 1949, hoy tiene 32 miembros incluyendo Finlandia y Suecia", "tx": "La OTAN fue creada en 1949 con un objetivo claro: si la Union Sovietica atacaba a Europa occidental, todos los paises miembros responderian juntos.", "hl": "El Articulo 5 es el corazon de la OTAN: un ataque a un miembro es un ataque a todos. Solo se ha activado UNA vez: el 12 de septiembre de 2001, tras el 9/11 en EE.UU."}, {"lb": "Hoy", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "La OTAN en el siglo XXI", "vi": "\ud83c\udf0d", "vc": "De alianza defensiva regional a presencia global en 4 continentes", "tx": "Tras la caida de la URSS, la OTAN se expandio hacia el este y amplio su rol a operaciones en Afganistan, Libia y mas regiones del mundo.", "cs": [{"i": "\ud83c\uddf7\ud83c\uddfa", "t": "La invasion de Ucrania (2022) revitalizo la OTAN: Finlandia y Suecia se unieron"}, {"i": "\ud83d\udcb0", "t": "Los paises deben gastar el 2% de su PIB en defensa. Alemania aumento su presupuesto historico"}, {"i": "\ud83c\udf10", "t": "La OTAN ahora considera a China como un desafio sistemico, no solo a Rusia"}]}, {"lb": "Debate", "lc": "#FAEEDA", "lt": "#854F0B", "h": "Es util o provoca conflictos?", "tx": "La OTAN genera posiciones muy encontradas en el debate geopolitico mundial actual.", "cs": [{"i": "\u2705", "t": "75 anos sin guerra entre sus miembros. Disuasion efectiva demostrada."}, {"i": "\u26a0\ufe0f", "t": "Su expansion fue percibida como amenaza por Rusia, contribuyendo a la guerra de Ucrania"}, {"i": "\ud83c\uddfa\ud83c\uddf8", "t": "Trump (2024-2026) cuestiono el compromiso de EE.UU. si los miembros no pagan el 2% del PIB"}]}, {"lb": "Colombia", "lc": "#EEEDFE", "lt": "#534AB7", "h": "Afecta a Colombia?", "vi": "\ud83c\udde8\ud83c\uddf4", "vc": "Colombia: unico socio global de la OTAN en America Latina (desde 2018)", "tx": "Colombia tiene estatus especial de socio global de la OTAN, permitiendo cooperacion en entrenamiento, inteligencia y equipos militares. No es miembro pleno.", "hl": "Debate en Colombia: es una ventaja para la seguridad nacional o compromete la politica exterior independiente del pais frente a Venezuela y Cuba?"}, {"lb": "Futuro", "lc": "#FCEBEB", "lt": "#A32D2D", "h": "Que viene para la OTAN?", "vi": "\ud83d\udd2d", "vc": "Mas grande, mas cara, con mirada hacia Asia-Pacifico", "tx": "La OTAN aumenta tropas en Europa del Este y evalua expandir su rol hacia Asia para contrarrestar el crecimiento de China como potencia global.", "hl": "Japon, Corea del Sur, Australia y Nueva Zelanda participaron como observadores en cumbres de la OTAN, sental de que la alianza mira mas alla del Atlantico."}], "quiz": [{"q": "Cuantas veces se ha activado el Articulo 5 de la OTAN?", "o": ["Nunca", "1 vez (tras el 9/11)", "3 veces", "5 veces"], "c": 1, "e": "El Articulo 5 solo se ha activado una vez: el 12 de septiembre de 2001, un dia despues del ataque a EE.UU., lo que llevo a la intervencion en Afganistan."}, {"q": "Que papel tiene Colombia en la OTAN?", "o": ["Es miembro pleno", "No tiene ningun vinculo", "Es el unico socio global de la OTAN en America Latina", "Tiene observadores en reuniones"], "c": 2, "e": "Colombia obtuvo estatus de socio global de la OTAN en 2018, el unico pais latinoamericano con ese vinculo que permite cooperacion militar e inteligencia."}, {"q": "Que hicieron Finlandia y Suecia en 2023-2024?", "o": ["Salieron de la OTAN", "Se unieron a la OTAN rompiendo su neutralidad historica", "Firmaron tratado de paz con Rusia", "Aumentaron comercio con China"], "c": 1, "e": "La invasion rusa a Ucrania convencio a ambos paises de abandonar su neutralidad historica de decadas y unirse a la OTAN en 2023 y 2024 respectivamente."}]}, {"id": "fmi", "mod": "eco", "title": "FMI y Banco Mundial: ayuda o control?", "desc": "Las instituciones que prestan dinero y ponen condiciones", "t": "10 min", "xp": 55, "dif": "medium", "steps": [{"lb": "Que son", "lc": "#E6F1FB", "lt": "#185FA5", "h": "Las instituciones de Bretton Woods", "vi": "\ud83c\udfdb\ufe0f", "vc": "Creadas en 1944 para estabilizar la economia global", "tx": "El FMI y el Banco Mundial nacieron en 1944 para evitar que se repitiera la Gran Depresion. Ambos tienen sede en Washington y son controlados principalmente por paises occidentales.", "hl": "EE.UU. tiene poder de veto en el FMI: ninguna decision importante pasa sin su aprobacion. Por eso muchos paises en desarrollo los ven como herramientas de politica exterior americana."}, {"lb": "Diferencias", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "En que se diferencian?", "ig": [{"f": "\ud83d\udcb0", "l": "FMI", "v": "Prestamos de emergencia por crisis de balanza de pagos. Corto plazo."}, {"f": "\ud83c\udfd7\ufe0f", "l": "Banco Mundial", "v": "Financiamiento largo para desarrollo: infraestructura, salud, educacion."}, {"f": "\ud83d\udccb", "l": "FMI condiciones", "v": "Exige recortar gasto publico, privatizar empresas y abrir mercados."}, {"f": "\ud83d\udccb", "l": "Banco Mundial", "v": "Proyectos con condicionalidades sobre gobernanza y medio ambiente."}]}, {"lb": "Controversia", "lc": "#FBEAF0", "lt": "#993556", "h": "El Consenso de Washington", "vi": "\ud83d\udc8a", "vc": "Privatizacion + austeridad + apertura de mercados = receta de los anos 90", "tx": "En los anos 90, el FMI impuso en America Latina el Consenso de Washington: privatizar empresas publicas, reducir subsidios y abrir fronteras al libre comercio.", "hl": "Argentina siguio las recetas al pie de la letra y colapso en 2001. Colombia tuvo resultados mas graduales. Las recetas generaron desigualdad aunque controlaron la inflacion."}, {"lb": "Colombia", "lc": "#FAEEDA", "lt": "#854F0B", "h": "Colombia y el FMI", "vi": "\ud83c\udde8\ud83c\uddf4", "vc": "Colombia tiene Linea de Credito Flexible (LCF) por 11 mil millones de dolares", "tx": "Colombia mantiene una LCF con el FMI como paraguas preventivo: no usa los fondos normalmente, pero su existencia da confianza a los mercados financieros internacionales.", "cs": [{"i": "\ud83d\udcca", "t": "Permite que los bonos colombianos tengan tasas de interes mas bajas en el mercado"}, {"i": "\ud83d\udcb9", "t": "Si el peso cae violentamente, el Banco de la Republica puede activar esos fondos"}, {"i": "\ud83e\udd14", "t": "Debate: es seguro depender de esa red de seguridad o nos compromete politicamente?"}]}, {"lb": "Alternativas", "lc": "#EEEDFE", "lt": "#534AB7", "h": "Los nuevos rivales del FMI", "tx": "El dominio del FMI y el Banco Mundial esta siendo desafiado por nuevas instituciones impulsadas por China.", "cs": [{"i": "\ud83c\udde8\ud83c\uddf3", "t": "Banco Asiatico de Inversion (AIIB): creado por China en 2016, ya tiene 109 miembros"}, {"i": "\ud83c\udf0d", "t": "Nuevo Banco de Desarrollo del BRICS: 100 mil millones disponibles para el Sur Global"}, {"i": "\ud83d\udccd", "t": "China presta bilateralmente a Africa y America Latina sin las condiciones del FMI"}, {"i": "\u2696\ufe0f", "t": "Debate: son mejores esos prestamos o crean trampa de deuda con China como acreedor?"}]}], "quiz": [{"q": "Que es la Linea de Credito Flexible que Colombia tiene con el FMI?", "o": ["Una deuda activa que Colombia esta pagando", "Un credito preventivo que da confianza a los mercados", "Un acuerdo para privatizar empresas publicas", "Un prestamo especifico para infraestructura"], "c": 1, "e": "La LCF es una red de seguridad preventiva: el solo hecho de tenerla reduce las tasas de interes de los bonos colombianos en el mercado internacional."}, {"q": "Cual fue el resultado del Consenso de Washington en America Latina?", "o": ["Exito total: elimino la pobreza", "Fracaso total: todos los paises colapsaron", "Resultados mixtos: controlo inflacion pero genero desigualdad", "No se aplico en la region"], "c": 2, "e": "Resultados mixtos: controlo la hiperinflacion de los anos 80 pero genero privatizaciones desiguales. Argentina colapso en 2001 tras aplicarlo a fondo."}, {"q": "Que critica se le hace a los prestamos chinos en el Sur Global?", "o": ["Son demasiado pequenos para importar", "Exigen reformas politicas como condicion", "Pueden crear trampa de deuda con China como acreedor principal", "China no presta a paises en desarrollo"], "c": 2, "e": "Sri Lanka cedio un puerto a China por 99 anos al no poder pagar su deuda. Los criticos senalan el riesgo de dependencia estrategica con activos nacionales como garantia."}]}, {"id": "energia", "mod": "ene", "title": "La transicion energetica global", "desc": "Quien gana y quien pierde en el cambio de fosiles a renovables", "t": "8 min", "xp": 55, "dif": "medium", "steps": [{"lb": "Contexto", "lc": "#EAF3DE", "lt": "#3B6D11", "h": "El mundo cambia su fuente de energia", "vi": "\u2600\ufe0f", "vc": "Solar y eolica ya son mas baratas que el carbon en la mayoria del mundo", "tx": "La humanidad esta en la mayor transformacion energetica desde la Revolucion Industrial. Petroleo, gas y carbon estan siendo reemplazados por solar, eolica e hidrogeno verde.", "hl": "En 2024, el 42% de la electricidad mundial ya viene de renovables. En 2030 podria superar el 60%. Esto cambia quien tiene poder geopolitico en el mundo."}, {"lb": "Ganadores", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "Quienes ganan con las renovables?", "ig": [{"f": "\ud83c\udde8\ud83c\uddf3", "l": "China", "v": "Fabrica el 80% de los paneles solares. Lidera baterias y autos electricos."}, {"f": "\ud83c\udde9\ud83c\uddea", "l": "Alemania", "v": "Pioneer en eolica y solar. Exporta tecnologia al mundo."}, {"f": "\ud83c\udde8\ud83c\uddf1", "l": "Chile", "v": "Atacama: solar mas barato del mundo. Exportara hidrogeno verde."}, {"f": "\ud83c\udde8\ud83c\uddf4", "l": "Colombia", "v": "Potencial enorme en solar, eolica (La Guajira) e hidrogeno verde."}]}, {"lb": "Perdedores", "lc": "#FCEBEB", "lt": "#A32D2D", "h": "Quienes pierden con la transicion?", "vi": "\ud83d\udcc9", "vc": "Los paises dependientes del petroleo enfrentan el mayor riesgo existencial", "tx": "Los grandes productores de combustibles fosiles enfrentan una amenaza existencial a largo plazo con la transicion energetica global.", "cs": [{"i": "\ud83c\uddf8\ud83c\udde6", "t": "Arabia Saudita invierte billones en diversificar su economia antes de que el petroleo baje de valor"}, {"i": "\ud83c\uddf7\ud83c\uddfa", "t": "Rusia sin petrodolares pierde su principal fuente de ingresos y presion geopolitica"}, {"i": "\ud83c\uddfb\ud83c\uddea", "t": "Venezuela, Nigeria, Irak: economias monocultivo de petroleo sin plan B claro"}]}, {"lb": "Minerales", "lc": "#EEEDFE", "lt": "#534AB7", "h": "La nueva geopolitica de los minerales", "vi": "\u26cf\ufe0f", "vc": "Litio, cobalto, niquel, cobre: los nuevos recursos de poder global", "tx": "Las baterias de autos electricos y paneles solares requieren minerales especificos. La carrera por controlarlos es la nueva geopolitica del siglo XXI.", "hl": "El Triangulo del Litio (Argentina, Bolivia, Chile) tiene el 60% de reservas mundiales de litio. Colombia tiene potencial significativo en cobre y niquel."}, {"lb": "Colombia", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "Oportunidad y riesgo para Colombia", "tx": "La transicion energetica presenta un dilema complejo para Colombia como pais productor de fosiles y con enorme potencial renovable.", "cs": [{"i": "\u26a0\ufe0f", "t": "El 40% de las exportaciones son petroleo y carbon. Si baja la demanda global, golpea fuerte las finanzas"}, {"i": "\u2705", "t": "La Guajira tiene el mejor recurso eolico de America Latina con potencial exportador"}, {"i": "\ud83e\udd14", "t": "Cuanto tiempo tiene Colombia para hacer la transicion antes del shock del mercado?"}, {"i": "\ud83d\udcca", "t": "Debate: dejar el petroleo en el suelo vs necesitar esos ingresos fiscales para el gasto publico"}]}], "quiz": [{"q": "Que porcentaje de la electricidad mundial venia de renovables en 2024?", "o": ["15%", "28%", "42%", "65%"], "c": 2, "e": "En 2024, el 42% de la electricidad mundial ya proviene de fuentes renovables. El cambio esta ocurriendo mas rapido de lo que muchos esperaban."}, {"q": "Que region tiene el 60% de las reservas mundiales de litio?", "o": ["Africa Central", "Siberia rusa", "El Triangulo del Litio (Argentina, Bolivia, Chile)", "Sudeste asiatico"], "c": 2, "e": "El Triangulo del Litio en Sudamerica contiene el 60% de las reservas conocidas de litio, el mineral clave para las baterias de autos electricos."}, {"q": "Cual es el principal riesgo de la transicion energetica para Colombia?", "o": ["Que suba el precio del petroleo", "Que el 40% de sus exportaciones fosiles pierdan demanda global", "Que China compita con sus energias renovables", "Que Venezuela tome sus campos petroleros"], "c": 1, "e": "El petroleo y el carbon representan el 40% de las exportaciones colombianas. Una caida sostenida en la demanda global golpearia duramente las finanzas publicas del pais."}]}, {"id": "latam", "mod": "lat", "title": "America Latina en el tablero global", "desc": "Por que el continente importa mas que nunca en el mundo actual", "t": "9 min", "xp": 50, "dif": "easy", "steps": [{"lb": "Vision general", "lc": "#EEEDFE", "lt": "#534AB7", "h": "Por que America Latina importa hoy?", "vi": "\ud83c\udf0e", "vc": "La region tiene lo que el mundo necesita: minerales, agua, alimentos y energia", "tx": "America Latina estuvo decadas en la periferia de la geopolitica global. Hoy, en la competencia EE.UU.-China, se volvio estrategica por sus recursos y posicion geografica.", "hl": "La region tiene: el 30% del agua dulce del mundo, el 27% de las tierras cultivables, el 60% del litio y enormes reservas de petroleo y minerales criticos para la economia verde."}, {"lb": "China avanza", "lc": "#E6F1FB", "lt": "#185FA5", "h": "China avanza rapidamente en la region", "vi": "\ud83c\udde8\ud83c\uddf3", "vc": "Es hoy el mayor socio comercial de Brasil, Chile y Peru", "tx": "Desde 2000, China invirtio mas de 150 mil millones en infraestructura latinoamericana: puertos, carreteras, plantas electricas y mineria, sin las condicionalidades del FMI.", "cs": [{"i": "\u2693", "t": "China construye puertos en Peru (Chancay), Cuba, Ecuador para controlar rutas comerciales"}, {"i": "\ud83d\udce1", "t": "Huawei instalo la infraestructura de telecomunicaciones en muchos paises de la region"}, {"i": "\ud83d\uded2", "t": "Colombia es uno de los pocos paises sin TLC con China, un debate muy activo en el pais"}]}, {"lb": "EE.UU.", "lc": "#FAEEDA", "lt": "#854F0B", "h": "EE.UU. desperto tarde en la region", "vi": "\ud83c\uddfa\ud83c\uddf8", "vc": "Washington reacciono cuando China ya tenia presencia establecida", "tx": "EE.UU. descuido America Latina durante los anos 2000 y 2010 enfocado en Medio Oriente. Cuando China avanzo, trato de reaccionar con nuevas iniciativas.", "hl": "La competencia EE.UU.-China en America Latina incluye 5G, satelites, bases militares de entrenamiento e influencia en narrativas politicas de la region."}, {"lb": "Bloques", "lc": "#E1F5EE", "lt": "#0F6E56", "h": "La fragmentacion politica regional", "tx": "America Latina no es un bloque unido. Hay tensiones internas profundas que reducen su poder de negociacion.", "cs": [{"i": "\ud83d\udd34", "t": "Eje progresista: Venezuela, Cuba, Nicaragua, Bolivia, Mexico (parcialmente)"}, {"i": "\ud83d\udd35", "t": "Eje pro-mercado: Ecuador, Paraguay, Uruguay, Peru (variable segun gobierno)"}, {"i": "\u2696\ufe0f", "t": "Pivotes: Brasil, Colombia, Chile, Argentina, cambian segun quien gobierna"}, {"i": "\ud83d\udea7", "t": "Esta fragmentacion reduce el poder de negociacion frente a potencias globales como China"}]}, {"lb": "Colombia", "lc": "#FBEAF0", "lt": "#993556", "h": "Colombia: donde se posiciona?", "vi": "\ud83c\udde8\ud83c\uddf4", "vc": "En la encrucijada: aliado de EE.UU., vecino de Venezuela, tentado por China", "tx": "Colombia tiene una posicion geopolitica compleja: aliado historico de EE.UU., vecino dificil de Venezuela, y creciente comercio con China.", "hl": "El gobierno de Petro (2022-2026) busco distancia de EE.UU. y acercamiento a Venezuela y China. El proximo gobierno definira el rumbo del pais en el tablero geopolitico regional."}], "quiz": [{"q": "Que porcentaje del agua dulce mundial tiene America Latina?", "o": ["10%", "20%", "30%", "50%"], "c": 2, "e": "America Latina posee el 30% del agua dulce del mundo, lo que la hace estrategica en un planeta con escasez hidrica creciente como desafio global."}, {"q": "Cuanto invirtio China en infraestructura latinoamericana desde el ano 2000?", "o": ["15 mil millones", "50 mil millones", "mas de 150 mil millones", "500 mil millones"], "c": 2, "e": "China invirtio mas de 150 mil millones en America Latina, principalmente en puertos, mineria, energia y telecomunicaciones, superando a EE.UU. en muchos anos."}, {"q": "Cual es el principal desafio politico de America Latina como region?", "o": ["Falta de recursos naturales", "Fragmentacion politica que reduce su poder de negociacion global", "Demasiada dependencia de China", "Exceso de integracion economica regional"], "c": 1, "e": "La division politica frecuente entre gobiernos de distintas tendencias impide que la region hable con una sola voz ante China, EE.UU. o la Union Europea."}]}];
+var CATS=['Todos','Geopolitica','Economia','Conflictos','Energia','Latam'];
+var AC='Todos';
+var CMAP={Geopolitica:'geo',Economia:'eco',Conflictos:'con',Energia:'ene',Latam:'lat'};
 
 window.addEventListener('load',function(){
   var d=new Date();
-  var ds=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-  var ms=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  document.getElementById('fecha').textContent=ds[d.getDay()]+', '+d.getDate()+' '+ms[d.getMonth()];
-  upd();rMods();rExp();rProfile();mkManifest();
+  var dy=['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
+  var mo=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  document.getElementById('fch').textContent=dy[d.getDay()]+' '+d.getDate()+' '+mo[d.getMonth()]+' 2026';
+  UPD();RM();RE();RP();MAN();SW();
 });
 
-function mkManifest(){
+function MAN(){
   var m={name:'GeoMicro IA',short_name:'GeoMicro',start_url:'.',display:'standalone',theme_color:'#0F6E56',background_color:'#ffffff',
-    icons:[{src:'data:image/svg+xml,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 192 192%22%3E%3Crect width%3D%22192%22 height%3D%22192%22 rx%3D%2240%22 fill%3D%22%230F6E56%22/%3E%3Ctext x%3D%2296%22 y%3D%22130%22 font-size%3D%22100%22 text-anchor%3D%22middle%22 fill%3D%22white%22 font-family%3D%22system-ui%22 font-weight%3D%22800%22%3EG%3C/text%3E%3C/svg%3E',sizes:'192x192',type:'image/svg+xml'}]};
-  var b=new Blob([JSON.stringify(m)],{type:'application/json'});
-  document.getElementById('mplink').href=URL.createObjectURL(b);
+    icons:[{src:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',sizes:'192x192',type:'image/png'}]};
+  try{
+    var b=new Blob([JSON.stringify(m)],{type:'application/json'});
+    document.querySelector('link[rel=manifest]').href=URL.createObjectURL(b);
+  }catch(e){}
 }
 
-function upd(){
+function SW(){
+  if('serviceWorker' in navigator){
+    var c='const C="gm1";self.addEventListener("install",e=>e.waitUntil(caches.open(C).then(c=>c.addAll(["."]))));self.addEventListener("fetch",e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match(".")))))';
+    try{navigator.serviceWorker.register(URL.createObjectURL(new Blob([c],{type:'application/javascript'}))).catch(function(){});}catch(e){}
+  }
+}
+
+function UPD(){
   document.getElementById('stk').textContent=ST.streak;
   document.getElementById('xpc').textContent=ST.xp;
-  document.getElementById('sl').textContent=DONE.size;
-  document.getElementById('sx').textContent=ST.xp;
-  document.getElementById('pl2').textContent=DONE.size;
-  document.getElementById('px2').textContent=ST.xp;
+  document.getElementById('s-ln').textContent=DN.size;
+  document.getElementById('s-xp').textContent=ST.xp;
+  document.getElementById('p-ln').textContent=DN.size;
+  document.getElementById('p-xp').textContent=ST.xp;
 }
 
-function rMods(){
-  var g=document.getElementById('mgrid');
-  var html='';
+function RM(){
+  var g=document.getElementById('mg');
+  var h='';
   for(var i=0;i<MODS.length;i++){
     var m=MODS[i];
     var mL=LS.filter(function(l){return l.mod===m.id;});
-    var dn=mL.filter(function(l){return DONE.has(l.id);}).length;
-    var pct=mL.length?Math.round((dn/mL.length)*100):0;
-    html+='<div class="mc" onclick="fGo(''+m.id+'')">';
-    html+='<div class="mi" style="background:'+m.bg+';color:'+m.fg+'">'+m.icon+'</div>';
-    html+='<div class="mn">'+m.name+'</div>';
-    html+='<div class="mct">'+dn+' de '+mL.length+' lecciones</div>';
-    html+='<div class="mbar"><div class="mfill" style="width:'+pct+'%;background:'+m.fill+'"></div></div>';
-    html+='</div>';
+    var dn=mL.filter(function(l){return DN.has(l.id);}).length;
+    var p=mL.length?Math.round((dn/mL.length)*100):0;
+    h+='<div class="mc" data-mid="'+m.id+'" onclick="FG(this.dataset.mid)">';
+    h+='<div class="mi" style="background:'+m.bg+';color:'+m.fg+'">'+m.icon+'</div>';
+    h+='<div class="mn">'+m.name+'</div>';
+    h+='<div class="mct">'+dn+' de '+mL.length+' lecciones</div>';
+    h+='<div class="mb2"><div class="mf" style="width:'+p+'%;background:'+m.fill+'"></div></div>';
+    h+='</div>';
   }
-  g.innerHTML=html;
+  g.innerHTML=h;
 }
 
-function fGo(mid){
-  var map={geo:'Geopolítica',eco:'Economía',pow:'Todos',con:'Conflictos',ene:'Energía',lat:'Latam'};
-  ACAT=map[mid]||'Todos';
-  showSc('explore');setNav('explore');rExp();
+function FG(mid){
+  var map={geo:'Geopolitica',eco:'Economia',con:'Conflictos',ene:'Energia',lat:'Latam',pow:'Todos'};
+  AC=map[mid]||'Todos';
+  SC('explore');SN('explore');RE();
 }
 
-function rExp(){
-  var ch=document.getElementById('chips');
-  var html='';
+function RE(){
+  var ch=document.getElementById('cps');
+  var h='';
   for(var i=0;i<CATS.length;i++){
     var c=CATS[i];
-    html+='<div class="chip'+(c===ACAT?' active':'')+'" onclick="setCat(''+c+'')">'+c+'</div>';
+    h+='<div class="cp'+(c===AC?' on':'')+'" data-cat="'+c+'" onclick="SC2(this.dataset.cat)">'+c+'</div>';
   }
-  ch.innerHTML=html;
-  rLL();
+  ch.innerHTML=h;
+  RL();
 }
 
-function setCat(c){ACAT=c;rExp();}
-function filterL(){rLL();}
+function SC2(c){AC=c;RE();}
+function FL(){RL();}
 
-function rLL(){
+function RL(){
   var sr=(document.getElementById('srch').value||'').toLowerCase();
-  var cm={Geopolítica:'geo',Economía:'eco',Conflictos:'con',Energía:'ene',Latam:'lat'};
-  var mc={};MODS.forEach(function(m){mc[m.id]={bg:m.bg,fg:m.fg,ico:m.icon};});
-  var df={easy:'de',medium:'dm2',hard:'dh'};
-  var dl={easy:'Básico',medium:'Intermedio',hard:'Avanzado'};
+  var mc={};
+  for(var i=0;i<MODS.length;i++){mc[MODS[i].id]={bg:MODS[i].bg,fg:MODS[i].fg,ic:MODS[i].icon};}
   var list=LS.filter(function(l){
-    return (ACAT==='Todos'||l.mod===cm[ACAT])&&(!sr||l.title.toLowerCase().includes(sr)||l.desc.toLowerCase().includes(sr));
+    return (AC==='Todos'||l.mod===CMAP[AC])&&(!sr||l.title.toLowerCase().includes(sr)||l.desc.toLowerCase().includes(sr));
   });
-  var html='';
+  var dc={easy:'de',medium:'dm',hard:'dh'};
+  var dl={easy:'Basico',medium:'Intermedio',hard:'Avanzado'};
+  var h='';
   for(var i=0;i<list.length;i++){
     var l=list[i];
     var idx=LS.indexOf(l);
-    var c=mc[l.mod]||{bg:'#eee',fg:'#333',ico:'📚'};
-    var done=DONE.has(l.id);
-    html+='<div class="lli" onclick="startLesson('+idx+')">';
-    html+='<div class="llico" style="background:'+c.bg+';color:'+c.fg+'">'+c.ico+'</div>';
-    html+='<div class="llinf"><div class="lltt">'+l.title+'</div><div class="llm">'+l.t+' · '+l.xp+' XP</div></div>';
-    html+='<div class="llr"><span class="df '+(df[l.dif]||'de')+'">'+(dl[l.dif]||'Básico')+'</span>'+(done?'<div class="dk"><i class="ti ti-check"></i></div>':'')+'</div>';
-    html+='</div>';
+    var c=mc[l.mod]||{bg:'#eee',fg:'#333',ic:'📚'};
+    var dn=DN.has(l.id);
+    h+='<div class="li" data-idx="'+idx+'" onclick="GO(parseInt(this.dataset.idx))">';
+    h+='<div class="lic" style="background:'+c.bg+';color:'+c.fg+'">'+c.ic+'</div>';
+    h+='<div class="lif"><div class="lit">'+l.title+'</div><div class="lim">'+l.t+' &bull; '+l.xp+' XP</div></div>';
+    h+='<div class="lir"><span class="df '+(dc[l.dif]||'de')+'">'+(dl[l.dif]||'Basico')+'</span>'+(dn?'<div class="dk"><i class="ti ti-check"></i></div>':'')+'</div>';
+    h+='</div>';
   }
-  document.getElementById('llist').innerHTML=html||'<div style="padding:40px;text-align:center;color:var(--t3)">Sin resultados</div>';
+  document.getElementById('lll').innerHTML=h||'<div style="padding:40px;text-align:center;color:var(--t3)">Sin resultados</div>';
 }
 
-function startLesson(idx){
+function GO(idx){
   CL=idx;CS=0;T0=Date.now();
-  showSc('lesson');setNav('');rStep();
+  SC('lesson');SN('');RS();
 }
 
-function rStep(){
+function RS(){
   var l=LS[CL];var s=l.steps[CS];var tot=l.steps.length;
   document.getElementById('lbf').style.width=Math.round((CS/tot)*100)+'%';
-  document.getElementById('lstp').textContent=(CS+1)+'/'+tot;
-  var btn=document.getElementById('lnxt');
-  btn.innerHTML=CS===tot-1?'Al cuestionario <i class="ti ti-help-circle"></i>':'Siguiente <i class="ti ti-arrow-right"></i>';
-  var h='<div class="tbdg" style="background:'+s.lc+';color:'+s.lt+'">'+s.lb+'</div>';
+  document.getElementById('lsp').textContent=(CS+1)+'/'+tot;
+  var nb=document.getElementById('lnb');
+  nb.innerHTML=CS===tot-1?'Al cuestionario <i class="ti ti-help-circle"></i>':'Siguiente <i class="ti ti-arrow-right"></i>';
+  var h='<div class="tbg" style="background:'+s.lc+';color:'+s.lt+'">'+s.lb+'</div>';
   h+='<div class="lh">'+s.h+'</div>';
-  if(s.vi){h+='<div class="lvis"><div class="lvi">'+s.vi+'</div><div class="lvc">'+s.vc+'</div></div>';}
-  if(s.tx){h+='<div class="ltxt">'+s.tx+'</div>';}
-  if(s.hl){h+='<div class="hlbox">'+s.hl+'</div>';}
+  if(s.vi){h+='<div class="lv"><div class="lvi">'+s.vi+'</div><div class="lvc">'+s.vc+'</div></div>';}
+  if(s.tx){h+='<div class="ltx">'+s.tx+'</div>';}
+  if(s.hl){h+='<div class="hl">'+s.hl+'</div>';}
   if(s.cs){
-    h+='<div class="cpts">';
-    for(var i=0;i<s.cs.length;i++){h+='<div class="cpt"><span class="ci">'+s.cs[i].i+'</span><span>'+s.cs[i].t+'</span></div>';}
+    h+='<div class="cs">';
+    for(var i=0;i<s.cs.length;i++){h+='<div class="ci"><span class="cii">'+s.cs[i].i+'</span><span>'+s.cs[i].t+'</span></div>';}
     h+='</div>';
   }
   if(s.ig){
-    h+='<div class="infog"><div class="infot">Datos clave</div>';
-    for(var j=0;j<s.ig.length;j++){h+='<div class="infor"><div class="infl">'+s.ig[j].f+'</div><div class="infl2">'+s.ig[j].l+'</div><div class="infv">'+s.ig[j].v+'</div></div>';}
+    h+='<div class="ig"><div class="igt">Datos clave</div>';
+    for(var j=0;j<s.ig.length;j++){h+='<div class="ir"><div class="if">'+s.ig[j].f+'</div><div class="il">'+s.ig[j].l+'</div><div class="iv">'+s.ig[j].v+'</div></div>';}
     h+='</div>';
   }
-  document.getElementById('lbody').innerHTML=h;
-  document.getElementById('sc-lesson').scrollTop=0;
+  document.getElementById('lbd').innerHTML=h;
+  document.getElementById('s-lesson').scrollTop=0;
 }
 
-function nextStep(){
+function NS(){
   var l=LS[CL];
-  if(CS<l.steps.length-1){CS++;rStep();}else{startQuiz();}
+  if(CS<l.steps.length-1){CS++;RS();}else{SQ2();}
 }
 
-function startQuiz(){CQ=0;QC=0;QA={};showSc('quiz');rQ();}
+function SQ2(){CQ=0;QC=0;QSA={};SC('quiz');RQ();}
 
-function rQ(){
+function RQ(){
   var l=LS[CL];var q=l.quiz[CQ];var tot=l.quiz.length;
   document.getElementById('qbf').style.width=(80+Math.round((CQ/tot)*20))+'%';
-  document.getElementById('qstp').textContent='Quiz '+(CQ+1)+'/'+tot;
-  document.getElementById('qnxt').style.display='none';
+  document.getElementById('qsp').textContent='Quiz '+(CQ+1)+'/'+tot;
+  document.getElementById('qnb').style.display='none';
   var lt=['A','B','C','D'];
   var h='<div class="qn">Pregunta '+(CQ+1)+' de '+tot+'</div>';
   h+='<div class="qt">'+q.q+'</div>';
-  h+='<div class="opts">';
+  h+='<div class="ops">';
   for(var i=0;i<q.o.length;i++){
-    h+='<button class="opt" id="o'+i+'" onclick="selO('+i+')"><span class="ol">'+lt[i]+'</span>'+q.o[i]+'</button>';
+    h+='<button class="op" data-i="'+i+'" onclick="SEL(parseInt(this.dataset.i))">';
+    h+='<span class="ol">'+lt[i]+'</span>'+q.o[i]+'</button>';
   }
   h+='</div><div class="fb" id="qfb"></div>';
-  document.getElementById('qbody').innerHTML=h;
-  document.getElementById('sc-quiz').scrollTop=0;
-  if(QA[CQ]!==undefined)apQ(QA[CQ]);
+  document.getElementById('qbd').innerHTML=h;
+  document.getElementById('s-quiz').scrollTop=0;
+  if(QSA[CQ]!==undefined){APQ(QSA[CQ]);}
 }
 
-function selO(idx){
-  if(QA[CQ]!==undefined)return;
-  QA[CQ]=idx;
-  var l=LS[CL];
-  if(idx===l.quiz[CQ].c)QC++;
-  apQ(idx);
-  var nw=document.getElementById('qnxt');
-  nw.style.display='block';
-  nw.querySelector('button').innerHTML=CQ<l.quiz.length-1?'Siguiente <i class="ti ti-arrow-right"></i>':'Ver resultados <i class="ti ti-trophy"></i>';
+function SEL(idx){
+  if(QSA[CQ]!==undefined)return;
+  QSA[CQ]=idx;
+  if(idx===LS[CL].quiz[CQ].c)QC++;
+  APQ(idx);
+  var nb=document.getElementById('qnb');
+  nb.style.display='block';
+  nb.querySelector('button').innerHTML=CQ<LS[CL].quiz.length-1?'Siguiente <i class="ti ti-arrow-right"></i>':'Ver resultados <i class="ti ti-trophy"></i>';
 }
 
-function apQ(idx){
-  var l=LS[CL];var q=l.quiz[CQ];
-  document.querySelectorAll('.opt').forEach(function(o){o.classList.add('dis');});
-  document.getElementById('o'+q.c).classList.add('ok');
-  if(idx!==q.c)document.getElementById('o'+idx).classList.add('no');
+function APQ(idx){
+  var q=LS[CL].quiz[CQ];
+  document.querySelectorAll('.op').forEach(function(o){o.classList.add('dis');});
+  var oel=document.querySelector('.op[data-i="'+q.c+'"]');
+  if(oel)oel.classList.add('ok');
+  if(idx!==q.c){var nel=document.querySelector('.op[data-i="'+idx+'"]');if(nel)nel.classList.add('no');}
   var fb=document.getElementById('qfb');
-  fb.className='fb '+(idx===q.c?'fbok':'fbno')+' show';
-  fb.innerHTML=(idx===q.c?'<strong>✅ Correcto.</strong> ':'<strong>❌ Incorrecto.</strong> ')+q.e;
+  fb.className='fb '+(idx===q.c?'fbok':'fbno')+' on';
+  fb.innerHTML=(idx===q.c?'<strong>Correcto.</strong> ':'<strong>Incorrecto.</strong> ')+q.e;
 }
 
-function nextQ(){
+function NQ(){
   var l=LS[CL];
-  if(CQ<l.quiz.length-1){CQ++;rQ();}else{finLesson();}
+  if(CQ<l.quiz.length-1){CQ++;RQ();}else{FIN();}
 }
 
-function finLesson(){
+function FIN(){
   var l=LS[CL];
-  DONE.add(l.id);
-  ST.done=Array.from(DONE);
+  DN.add(l.id);
+  ST.done=Array.from(DN);
   ST.xp+=l.xp;
   ST.streak=Math.max(ST.streak,1);
-  saveS();upd();rMods();rLL();
+  SAV();UPD();RM();RL();
   var el=Math.round((Date.now()-T0)/60000);
-  document.getElementById('cdesc').textContent='Terminaste "'+l.title+'" y ganaste '+l.xp+' XP.';
+  document.getElementById('cd').textContent='Terminaste "'+l.title+'" y ganaste '+l.xp+' XP.';
   document.getElementById('cxp').textContent='+'+l.xp+' XP';
-  document.getElementById('ccor').textContent=QC+'/'+l.quiz.length;
-  document.getElementById('ctim').textContent=Math.max(1,el)+'m';
-  showSc('done');
+  document.getElementById('cc').textContent=QC+'/'+l.quiz.length;
+  document.getElementById('ct').textContent=Math.max(1,el)+'m';
+  SC('done');
 }
 
-var aiH=[],aiB=false;
-function ar(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
-function aik(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendAI();}}
-function sq(t){document.getElementById('aii').value=t;sendAI();}
+function AR(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+function AIK(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();SAI();}}
+function SQ(t){document.getElementById('aii').value=t;SAI();}
 
-async function sendAI(){
-  if(aiB)return;
+async function SAI(){
+  if(AIB)return;
   var inp=document.getElementById('aii');
   var txt=inp.value.trim();
   if(!txt)return;
   inp.value='';inp.style.height='auto';
-  aMsg(txt,'u');aiH.push({role:'user',content:txt});
-  aiB=true;document.getElementById('asb').disabled=true;
-  var te=aTyp();
-  ST.aiN=(ST.aiN||0)+1;saveS();
+  AM(txt,'u');AIH.push({role:'user',content:txt});
+  AIB=true;document.getElementById('asb').disabled=true;
+  var te=AT();
+  ST.aiN=(ST.aiN||0)+1;SAV();
   try{
-    var sys='Eres GeoMicro IA, experto en geopolítica y economía mundial. Hablas con Harold Marín, empresario colombiano de Caucasia, Antioquia. Explica en términos simples, conecta temas con Colombia cuando sea relevante. Usa emojis ocasionalmente. Máximo 300 palabras. Año: 2026.';
-    var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:sys,messages:aiH.slice(-10)})});
+    var sys='Eres GeoMicro IA, experto en geopolitica y economia mundial. Hablas con Harold Marin, empresario colombiano de Caucasia, Antioquia. Explica en terminos simples, conecta con Colombia cuando sea relevante. Usa emojis. Maximo 300 palabras. Anio actual: 2026.';
+    var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:sys,messages:AIH.slice(-10)})});
     var d=await r.json();
     te.remove();
-    var rep=d.content&&d.content[0]?d.content[0].text:'Error al conectar. Intenta de nuevo.';
-    aiH.push({role:'assistant',content:rep});
-    aMsg(rep,'a');
-  }catch(err){te.remove();aMsg('Error: '+err.message,'a');}
-  aiB=false;document.getElementById('asb').disabled=false;
+    var rep=(d.content&&d.content[0])?d.content[0].text:'Error de conexion. Intenta de nuevo.';
+    AIH.push({role:'assistant',content:rep});
+    AM(rep,'a');
+  }catch(err){te.remove();AM('Error: '+err.message,'a');}
+  AIB=false;document.getElementById('asb').disabled=false;
 }
 
-function aMsg(txt,role){
-  var ms=document.getElementById('aims');
+function AM(txt,role){
+  var ms=document.getElementById('aim');
   var n=new Date(),t=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
   var d=document.createElement('div');
   d.className='msg m'+role;
-  d.innerHTML='<div class="mb">'+txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/
-/g,'<br>')+'</div><div class="mt">'+t+'</div>';
+  var safe=txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  d.innerHTML='<div class="mb3">'+safe+'</div><div class="mt">'+t+'</div>';
   ms.appendChild(d);ms.scrollTop=ms.scrollHeight;return d;
 }
 
-function aTyp(){
-  var ms=document.getElementById('aims');
+function AT(){
+  var ms=document.getElementById('aim');
   var d=document.createElement('div');d.className='msg ma';
   d.innerHTML='<div class="typ"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
   ms.appendChild(d);ms.scrollTop=ms.scrollHeight;return d;
 }
 
-function rProfile(){
-  var r=document.getElementById('prows');
+function RP(){
+  var r=document.getElementById('pr');
   if(!r)return;
   var h='';
   for(var i=0;i<MODS.length;i++){
     var m=MODS[i];
     var mL=LS.filter(function(l){return l.mod===m.id;});
-    var dn=mL.filter(function(l){return DONE.has(l.id);}).length;
-    var pct=mL.length?Math.round((dn/mL.length)*100):0;
-    h+='<div class="prr"><div class="prrt"><span>'+m.icon+' '+m.name+'</span><span class="prrp">'+pct+'%</span></div>';
-    h+='<div class="prm"><div class="prmf" style="width:'+pct+'%;background:'+m.fill+'"></div></div></div>';
+    var dn=mL.filter(function(l){return DN.has(l.id);}).length;
+    var p=mL.length?Math.round((dn/mL.length)*100):0;
+    h+='<div class="prr"><div class="prrt"><span>'+m.icon+' '+m.name+'</span><span class="prrp">'+p+'%</span></div>';
+    h+='<div class="prb"><div class="prbf" style="width:'+p+'%;background:'+m.fill+'"></div></div></div>';
   }
   r.innerHTML=h;
-  document.getElementById('pl2').textContent=DONE.size;
-  document.getElementById('px2').textContent=ST.xp;
+  document.getElementById('p-ln').textContent=DN.size;
+  document.getElementById('p-xp').textContent=ST.xp;
 }
 
-function showSc(n){
+function SC(n){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-  var el=document.getElementById('sc-'+n);
+  var el=document.getElementById('s-'+n);
   if(el){el.classList.add('active');el.scrollTop=0;}
-  if(n==='ai'){setTimeout(function(){var m=document.getElementById('aims');m.scrollTop=m.scrollHeight;},100);}
+  if(n==='ai'){setTimeout(function(){var m=document.getElementById('aim');m.scrollTop=m.scrollHeight;},100);}
 }
-function setNav(n){
-  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('active');});
-  var el=document.getElementById('nb-'+n);if(el)el.classList.add('active');
+function SN(n){
+  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});
+  var el=document.getElementById('n-'+n);if(el)el.classList.add('on');
 }
-function goHome(){showSc('home');setNav('home');rMods();}
-function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
+function HOME(){SC('home');SN('home');RM();}
 </script>
 </body>
 </html>
