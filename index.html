@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0F6E56">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,10 +17,10 @@
 :root{--g:#1D9E75;--gd:#0F6E56;--gl:#E1F5EE;--gt:#085041;--al:#FAEEDA;--at:#854F0B;--rl:#FCEBEB;--rt:#A32D2D;--pl:#EEEDFE;--pt:#534AB7;--bg:#f7f8fa;--sf:#fff;--s2:#f1f3f6;--bd:rgba(0,0,0,.09);--bd2:rgba(0,0,0,.15);--tx:#1a1a1a;--t2:#555;--t3:#888;--r:14px;--rs:8px}
 @media(prefers-color-scheme:dark){:root{--bg:#0d0f12;--sf:#181c22;--s2:#22272f;--bd:rgba(255,255,255,.08);--bd2:rgba(255,255,255,.14);--tx:#f0f0f0;--t2:#aaa;--t3:#666;--gl:#0a2e22;--al:#2a1e07;--rl:#2a0f0f;--pl:#14123a}}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden}
+html{height:100%;height:100dvh;}body{height:100%;height:100dvh;overflow:hidden}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--tx);font-size:15px;line-height:1.6}
-#app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--sf);overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.1)}
-.screen{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#app{display:flex;flex-direction:column;height:100%;height:100dvh;max-width:480px;margin:0 auto;background:var(--sf);overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.1)}
+.screen{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:0}
 .screen.active{display:block}
 .hdr{padding:14px 20px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid var(--bd);background:var(--sf);position:sticky;top:0;z-index:10}
 .logo{display:flex;align-items:center;gap:9px}
@@ -29,7 +29,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-seri
 .hr{display:flex;align-items:center;gap:10px}
 .sp{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--at);background:var(--al);padding:5px 11px;border-radius:20px}
 .xpp{font-size:12px;font-weight:600;color:var(--gt);background:var(--gl);padding:5px 10px;border-radius:20px}
-.bnv{border-top:.5px solid var(--bd);display:flex;background:var(--sf);padding:6px 0 calc(6px + env(safe-area-inset-bottom));flex-shrink:0}
+.bnv{border-top:.5px solid var(--bd);display:flex;background:var(--sf);padding:8px 0 calc(12px + env(safe-area-inset-bottom));flex-shrink:0;position:sticky;bottom:0;z-index:20}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:6px 4px;font-size:10px;color:var(--t3);background:none;border:none;font-family:inherit}
 .nb.on{color:var(--g)}
 .nb i{font-size:22px}
@@ -106,7 +106,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-seri
 .b1{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:10px}
 .b1:active{background:var(--gd)}
 .b2{width:100%;padding:14px;background:var(--sf);color:var(--tx);border:.5px solid var(--bd2);border-radius:var(--r);font-size:15px;cursor:pointer;font-family:inherit;margin-bottom:10px}
-.bf{position:fixed;bottom:calc(70px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:448px}
+.bf{position:fixed;bottom:calc(80px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:448px}
 .etp{padding:20px 20px 0}
 .ett{font-size:22px;font-weight:800;margin-bottom:14px}
 .sw{display:flex;align-items:center;gap:9px;background:var(--s2);border:.5px solid var(--bd);border-radius:var(--r);padding:11px 14px;margin-bottom:14px}
@@ -144,7 +144,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-seri
 .ma .mb3{background:var(--s2);color:var(--tx);border-radius:16px 16px 16px 4px}
 .mt{font-size:10px;color:var(--t3);margin-top:3px;padding:0 4px}
 .mu .mt{text-align:right}
-.aiw{position:fixed;bottom:calc(60px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:100%;max-width:480px;padding:10px 14px;background:var(--sf);border-top:.5px solid var(--bd);display:flex;gap:9px;align-items:flex-end}
+.aiw{position:fixed;bottom:calc(72px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:100%;max-width:480px;padding:10px 14px;background:var(--sf);border-top:.5px solid var(--bd);display:flex;gap:9px;align-items:flex-end;z-index:15}
 .aii{flex:1;background:var(--s2);border:.5px solid var(--bd);border-radius:20px;padding:10px 14px;font-size:14px;color:var(--tx);font-family:inherit;resize:none;outline:none;max-height:100px;line-height:1.4}
 .aisb{width:40px;height:40px;border-radius:50%;background:var(--g);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .aisb:disabled{background:var(--s2);color:var(--t3);cursor:not-allowed}
@@ -557,7 +557,12 @@ function AM(txt,role){
   var n=new Date(),t=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
   var d=document.createElement('div');
   d.className='msg m'+role;
-  var safe=txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  var safe=txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  safe=safe.replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>');
+  safe=safe.replace(/\*([^*\n]+)\*/g,'<em>$1</em>');
+  safe=safe.replace(/^#{1,3} (.+)$/gm,'<strong>$1</strong>');
+  safe=safe.replace(/^[-\u2022] (.+)$/gm,'&nbsp;&bull; $1');
+  safe=safe.replace(/\n/g,'<br>');
   d.innerHTML='<div class="mb3">'+safe+'</div><div class="mt">'+t+'</div>';
   ms.appendChild(d);ms.scrollTop=ms.scrollHeight;return d;
 }
